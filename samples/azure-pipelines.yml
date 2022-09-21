@@ -1,0 +1,28 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+container:
+  image: mcr.microsoft.com/container-package-app:latest
+
+steps:
+# https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/deploy/azure-cli?view=azure-devops
+- task: AzureCLI@2
+  displayName: Publish CNAB bundle 
+  inputs:
+    # https://docs.microsoft.com/en-us/azure/devops/pipelines/library/service-endpoints?view=azure-devops&tabs=yaml
+    azureSubscription: '<Name of the Azure Resource Manager service connection>'
+    scriptType: 'bash'
+    scriptLocation: 'inlineScript'
+    failOnStandardError: true 
+    inlineScript: |
+      az acr login -n $(AZUREACR)
+      cd src/myhelmchart
+      cpa buildbundle
