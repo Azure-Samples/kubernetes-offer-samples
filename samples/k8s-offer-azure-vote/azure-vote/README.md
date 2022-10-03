@@ -35,12 +35,12 @@ The following tables lists the configurable parameters of the azure-vote chart a
 helm install azure-samples/azure-vote
 ```
 
-![azure-vote cats and dogs](images/vote1.png)
+![azure-vote cats and dogs](../images/vote1.png)
 
 ```
 helm install azure-samples/azure-vote --set title="Winter Sports" --set value1=Ski --set value2=Snowboard
 ```
 
-![azure-vote ski and snowboard](images/vote2.png)
+![azure-vote ski and snowboard](../images/vote2.png)
 
 
