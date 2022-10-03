@@ -75,7 +75,7 @@
         },
         "kubernetesVersion": {
             "type": "String",
-            "defaultValue": null,
+            "defaultValue": "1.24.0",
             "metadata": {
                 "description": "The version of Kubernetes."
             }
@@ -192,27 +192,11 @@
                     }
                 }
             }
-        },
-        {
-            "type": "Microsoft.KubernetesConfiguration/extensions",
-            "apiVersion": "2022-03-01",
-            "name": "extensionsusage",
-            "dependsOn": [
-                "[resourceId('Microsoft.ContainerService/managedClusters/', parameters('clusterResourceName'))]"
-            ],
-            "properties": {
-                "extensionType": "Microsoft.ExtensionsUsage",
-                "releaseTrain": "Stable"
-            },
-            "scope": "[concat('Microsoft.ContainerService/managedClusters/', parameters('clusterResourceName'))]"
-        },
+        },  
         {
             "type": "Microsoft.KubernetesConfiguration/extensions",
             "apiVersion": "2022-04-02-preview",
-            "name": "[parameters('extensionResourceName')]",
-            "dependsOn": [
-                "extensionsusage"
-            ],
+            "name": "[parameters('extensionResourceName')]",          
             "properties": {
                 "extensionType": "[variables('clusterExtensionTypeName')]",
                 "autoUpgradeMinorVersion": true,
@@ -231,7 +215,10 @@
                 "publisher": "[variables('plan-publisher')]",
                 "product": "[variables('plan-offerID')]"
             },
-            "scope": "[concat('Microsoft.ContainerService/managedClusters/', parameters('clusterResourceName'))]"
+            "scope": "[concat('Microsoft.ContainerService/managedClusters/', parameters('clusterResourceName'))]",
+            "dependsOn": [
+                "[resourceId('Microsoft.ContainerService/managedClusters/', parameters('clusterResourceName'))]"
+            ]
         }
     ],
     "outputs": {
