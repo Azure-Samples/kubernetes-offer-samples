@@ -1,8 +1,10 @@
-FROM ubuntu:22.04
+FROM ubuntu:latest
 
 RUN apt-get update -y
 
 RUN apt install -y build-essential libssl-dev libffi-dev python3-dev python3-pip
+
+RUN apt upgrade -y
 
 # We copy just the requirements.txt first to leverage Docker cache
 COPY ./requirements.txt /app/requirements.txt

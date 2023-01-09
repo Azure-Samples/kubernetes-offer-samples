@@ -7,11 +7,11 @@ global:
     billingIdentifier: DONOTMODIFY
     images:
       frontend:
-        digest: sha256:764d7ba13ed6569cb9ed6257b5ad038fb91343b4fcf2a67d7bb14025c74fecf8
+        digest: sha256:619f1eaebd1d0b137e68a90b1b06d18916aedebece7ec602d393bf241e7d4bfb
         image: azure-vote-front
         registry: azurek8ssamples.azurecr.io/marketplaceimages
       backend:
-        digest: sha256:a9cc5c331a573b4e073cee01a100327800c11f111c8fff5a8209dea2d854768e
+        digest: sha256:ff14c49d3880629b4b6f676a42c926e06135105ec4443678732a288f522b842d
         image: azure-vote-back
         registry: azurek8ssamples.azurecr.io/marketplaceimages
 # how many frontends do we want?
