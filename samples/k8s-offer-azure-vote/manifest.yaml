@@ -1,7 +1,7 @@
 applicationName: com.contoso.azurevote
 publisher: "Contoso"
 description: "A test package for the marketplace CNAB structure with existing or new cluster."
-version: 1.0.1 #Must be semver
+version: 1.0.1 #Must be in the format of #.#.#
 helmChart: "./azure-vote"
 clusterArmTemplate: "./mainTemplate.json"
 uiDefinition: "./createUIDefinition.json"
