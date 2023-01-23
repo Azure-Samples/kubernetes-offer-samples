@@ -7,16 +7,16 @@ global:
     billingIdentifier: DONOTMODIFY
     images:
       frontend:
-        digest: sha256:619f1eaebd1d0b137e68a90b1b06d18916aedebece7ec602d393bf241e7d4bfb
+        digest: sha256:b9ce27930c8bc8457fcf2e16a078b03fe78f19d7fefd0c60acf17923d5388ef7
         image: azure-vote-front
         registry: azurek8ssamples.azurecr.io/marketplaceimages
       backend:
-        digest: sha256:ff14c49d3880629b4b6f676a42c926e06135105ec4443678732a288f522b842d
+        digest: sha256:3158710be29203a78b8729e1cc69b2312dc3e6ced668a24b196e929f5396046f
         image: azure-vote-back
         registry: azurek8ssamples.azurecr.io/marketplaceimages
 # how many frontends do we want?
 replicaCount: 1
 
-# Service controlls
+# Service controls
 serviceNameFront: azure-vote-front
 serviceType: LoadBalancer
