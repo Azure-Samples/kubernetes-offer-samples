@@ -1,9 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: vote-back-{{.Release.Name}}
-  labels:
-    billing: {{ .Values.global.azure.billingIdentifier }}
+  name: vote-back-{{.Release.Name}} 
 spec:
   replicas: 1
   selector:
@@ -13,6 +11,7 @@ spec:
     metadata:
       labels:
         app: vote-back-{{.Release.Name}}
+        azure-extensions-usage-release-identifier: {{.Release.Name}}
     spec:
       containers:
       - name: vote-back-{{.Release.Name}}
@@ -33,8 +32,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: vote-front-{{.Release.Name}}
-  labels:
-    billing: {{ .Values.global.azure.billingIdentifier }}
 spec:
   replicas: {{ .Values.replicaCount }}
   strategy:
@@ -49,6 +46,7 @@ spec:
     metadata:
       labels:
         app: vote-front-{{.Release.Name}}
+        azure-extensions-usage-release-identifier: {{.Release.Name}}        
     spec:
       containers:
       - name: vote-front
