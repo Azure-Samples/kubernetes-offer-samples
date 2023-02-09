@@ -4,7 +4,6 @@ value1: Cats
 value2: Dogs
 global:
   azure:
-    billingIdentifier: DONOTMODIFY
     images:
       frontend:
         digest: sha256:b9ce27930c8bc8457fcf2e16a078b03fe78f19d7fefd0c60acf17923d5388ef7
