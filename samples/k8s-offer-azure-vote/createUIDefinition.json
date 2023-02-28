@@ -15,7 +15,7 @@
 					]
 				},
 				"resourceGroup": {
-					"allowExisting": "[equals(basics('createNewCluster'), false)]"
+					"allowExisting": true
 				}
 			}
 		},
