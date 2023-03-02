@@ -138,7 +138,7 @@
         {
             "type": "Microsoft.ContainerService/managedClusters",
             "condition" : "[parameters('createNewCluster')]",
-            "apiVersion": "2022-03-01",
+            "apiVersion": "2022-11-01",
             "name": "[parameters('clusterResourceName')]",
             "location": "[parameters('location')]",
             "dependsOn": [],
