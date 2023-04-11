@@ -1,0 +1,28 @@
+# Azure Vote UI control
+title: "Azure Vote Custom App"
+value1: Cats
+value2: Dogs
+getvalue: 'Get last one day usage' 
+global:
+  azure:
+    identity:
+      clientId: ""
+    marketplace:
+      planId: ""
+    extension:
+      resourceId: ""
+    images:
+      frontend:
+        digest: sha256:2be49df94115d6b88077c0a807a3fe26311bb24fde19ff6b4bf7fbefa965aa4b
+        image: azure-vote-custom-front
+        registry: azurek8ssamples.azurecr.io/marketplaceimages
+      backend:
+        digest: sha256:87583c95fd2253658fdd12e765addbd2126879af86a90b34efc09457486b21b1
+        image: azure-vote-back
+        registry: azurek8ssamples.azurecr.io/marketplaceimages
+# how many frontends do we want?
+replicaCount: 1
+
+# Service controls
+serviceNameFront: azure-vote-custom-front
+serviceType: LoadBalancer
