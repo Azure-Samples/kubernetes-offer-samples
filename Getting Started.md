@@ -1,78 +1,49 @@
-# Contributing to [project-title]
+# Getting Started: Publishing a Kubernetes App on Azure Marketplace
 
-This project welcomes contributions and suggestions.  Most contributions require you to agree to a
-Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us
-the rights to use your contribution. For details, visit https://cla.opensource.microsoft.com.
+## Introduction
+Thank you for joining us in our Kubernetes Apps public preview program. We’re delighted to have you participate in our vibrant and ever-growing ecosystem, where you can publish and monetize your Kubernetes application. This document has all the necessary steps to get you started and can enable you to publish your application in 1-2 weeks to the Kubernetes marketplace in Azure.
 
-When you submit a pull request, a CLA bot will automatically determine whether you need to provide
-a CLA and decorate the PR appropriately (e.g., status check, comment). Simply follow the instructions
-provided by the bot. You will only need to do this once across all repos using our CLA.
+## Pre-requisites
+You must meet the following criteria to be able to participate in the public preview:
+* The Kubernetes application should have a Helm-chart based application that is free of malware/vulnerabilities.
+* You should have an active publishing tenant or access to a [Partner Center account](https://learn.microsoft.com/en-us/partner-center/overview).
+* You should be able to adhere to several of our supported [billing models (licensing options)](https://learn.microsoft.com/en-us/partner-center/marketplace/marketplace-containers). 
+* Must be actively engaged.
 
-1111111111111111111111111111
+## ISV expectations
+If the necessary steps are followed, you can publish the application within 1-2 weeks! We expect you to be actively engaged and contact us if you face any necessary roadblocks after following the required steps. We appreciate your participation in our program. However, if we notice that your engagement levels have decreased, we may need to give priority to other participants due to the high volume of interest we receive.
 
-This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/).
-For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or
-contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
+## Training
+The Following training materials will help accelerate your onboarding onto the Azure Marketplace.
+* [Mastering Container offers for Kubernetes Apps](https://microsoft.github.io/Mastering-the-Marketplace/container/)
+* [Azure K8s Apps Marketplace Demo Walkthrough](https://www.youtube.com/watch?v=_6yGXUND43s)
 
- - [Code of Conduct](#coc)
- - [Issues and Bugs](#issue)
- - [Feature Requests](#feature)
- - [Submission Guidelines](#submit)
 
-## <a name="coc"></a> Code of Conduct
-Help us keep this project open and inclusive. Please read and follow our [Code of Conduct](https://opensource.microsoft.com/codeofconduct/).
+## Steps to follow
+### Step 1: Package your application
+This step allows you to package your helm chart-based application and other artifacts such as Azure Resource Manager (ARM) template, manifest file, Helm chart and createUIDef into a Cloud Native Application Bundles (CNAB) package. Please refer to the links below:
+* [Prepare your Kubernetes Apps offer](https://learn.microsoft.com/en-us/partner-center/marketplace/azure-container-technical-assets-kubernetes?tabs=windows)
 
-## <a name="issue"></a> Found an Issue?
-If you find a bug in the source code or a mistake in the documentation, you can help us by
-[submitting an issue](#submit-issue) to the GitHub Repository. Even better, you can
-[submit a Pull Request](#submit-pr) with a fix.
+At the end of this step, you will be able to create a CNAB bundle.
 
-## <a name="feature"></a> Want a Feature?
-You can *request* a new feature by [submitting an issue](#submit-issue) to the GitHub
-Repository. If you would like to *implement* a new feature, please submit an issue with
-a proposal for your work first, to be sure that we can use it.
+### Step 2: Create the Kubernetes offer
+This step allows you to create an Azure Container offer within Partner Center. You can preview and test the offer before publishing it on the Azure Marketplace.
+* [Create an Azure Container offer](https://learn.microsoft.com/en-us/partner-center/marketplace/azure-container-offer-setup)
 
-* **Small Features** can be crafted and directly [submitted as a Pull Request](#submit-pr).
+In order to simplify the process of Vulnerability scanning and certification, Microsoft strongly recommends you follow the steps in the Vulnerability Scan-Microsoft Defender document to understand the vulnerabilities flagged. Please take action to resolve them before pushing the offer through the pipeline.
+* [Vulnerability Scan-Microsoft Defender.docx](https://microsoft.sharepoint.com/:w:/t/ProjectHaiku/EVMnkdMRSlJNgi-JJCayLTMB_qCJbwWfSVCzdj9v3dw1Yg?e=j39sVk)
 
-## <a name="submit"></a> Submission Guidelines
+### Step 3: Purchase/Deploy your application
+This step walks through the process that an end consumer would go through to deploy the application onto their Kubernetes cluster.
+* [Deploy a container offer from Azure Marketplace (preview)](https://learn.microsoft.com/en-us/azure/aks/deploy-marketplace)
 
-### <a name="submit-issue"></a> Submitting an Issue
-Before you submit an issue, search the archive, maybe your question was already answered.
+### Step 4:
+If you plan to stop activity on your offer, you can proceed by Stop selling the app. The "Stop Sell" of an offer/plan means no future acquisitions of the offer/plan are possible via Azure Marketplace. Since these are consumption-based plans for now, the existing deployments will continue to emit usage till customers uninstall the extension.
+* [Stop distribution of an offer or plan](https://learn.microsoft.com/en-us/partner-center/marketplace/update-existing-offer#stop-distribution-of-an-offer-or-plan)
 
-If your issue appears to be a bug, and hasn't been reported, open a new issue.
-Help us to maximize the effort we can spend fixing issues and adding new
-features, by not reporting duplicate issues.  Providing the following information will increase the
-chances of your issue being dealt with quickly:
+## Microsoft contacts
+For any additional questions not covered by this guide, feel free to reach out to the Microsoft Azure Kubernetes Service (AKS) Ecosystem product team at bobmital@microsoft.com or janeguo@microsoft.com.
 
-* **Overview of the Issue** - if an error is being thrown a non-minified stack trace helps
-* **Version** - what version is affected (e.g. 0.1.2)
-* **Motivation for or Use Case** - explain what are you trying to do and why the current behavior is a bug for you
-* **Browsers and Operating System** - is this a problem with all browsers?
-* **Reproduce the Error** - provide a live example or a unambiguous set of steps
-* **Related Issues** - has a similar issue been reported before?
-* **Suggest a Fix** - if you can't fix the bug yourself, perhaps you can point to what might be
-  causing the problem (line of code or commit)
-
-You can file new issues by providing the above information at the corresponding repository's issues link: https://github.com/[organization-name]/[repository-name]/issues/new].
-
-### <a name="submit-pr"></a> Submitting a Pull Request (PR)
-Before you submit your Pull Request (PR) consider the following guidelines:
-
-* Search the repository (https://github.com/[organization-name]/[repository-name]/pulls) for an open or closed PR
-  that relates to your submission. You don't want to duplicate effort.
-
-* Make your changes in a new git fork:
-
-* Commit your changes using a descriptive commit message
-* Push your fork to GitHub:
-* In GitHub, create a pull request
-* If we suggest changes then:
-  * Make the required updates.
-  * Rebase your fork and force push to your GitHub repository (this will update your Pull Request):
-
-    ```shell
-    git rebase master -i
-    git push -f
-    ```
-
-That's it! Thank you for your contribution!
+## Glossary of terms
+**Kubernetes Application**: A Kubernetes Application on Azure Marketplace refers to a software application that is packaged and available for purchase and deployment through Azure Marketplace and is designed to be deployed and managed on a Kubernetes cluster running on AKS.
+**Azure Container Offer**: A transactable offer type in the Microsoft commercial marketplace that enables running containers on AKS in the customer’s tenant.
