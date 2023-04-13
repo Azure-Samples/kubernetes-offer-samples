@@ -31,7 +31,7 @@ This step allows you to create an Azure Container offer within Partner Center. Y
 * [Create an Azure Container offer](https://learn.microsoft.com/en-us/partner-center/marketplace/azure-container-offer-setup)
 
 In order to simplify the process of Vulnerability scanning and certification, Microsoft strongly recommends you follow the steps in the Vulnerability Scan-Microsoft Defender document to understand the vulnerabilities flagged. Please take action to resolve them before pushing the offer through the pipeline.
-* [Vulnerability Scan-Microsoft Defender](https:https://https://github.com/bobmital/kubernetes-offer-samples/blob/main/getting-started/Vulnerability-Scan.md)
+* [Vulnerability Scan-Microsoft Defender](https://github.com/bobmital/kubernetes-offer-samples/blob/main/getting-started/Vulnerability-Scan.md)
 
 ### Step 3: Purchase/Deploy your application
 This step walks through the process that an end consumer would go through to deploy the application onto their Kubernetes cluster.
