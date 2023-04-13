@@ -42,7 +42,7 @@ If you plan to stop activity on your offer, you can proceed by Stop selling the 
 * [Stop distribution of an offer or plan](https://learn.microsoft.com/en-us/partner-center/marketplace/update-existing-offer#stop-distribution-of-an-offer-or-plan)
 
 ## Microsoft contacts
-For any additional questions not covered by this guide, feel free to reach out to the Microsoft Azure Kubernetes Service (AKS) Ecosystem product team at bobmital@microsoft.com or janeguo@microsoft.com.
+For any additional questions not covered by this guide, feel free to reach out to the Microsoft Azure Kubernetes Service (AKS) Ecosystem product team at tcontainerpreview@service.microsoft.com.
 
 ## Glossary of terms
 **Kubernetes Application**: A Kubernetes Application on Azure Marketplace refers to a software application that is packaged and available for purchase and deployment through Azure Marketplace and is designed to be deployed and managed on a Kubernetes cluster running on AKS.
