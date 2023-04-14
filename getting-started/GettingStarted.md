@@ -5,7 +5,7 @@ Thank you for joining us in our Kubernetes Apps public preview program. We’re 
 
 ### Pre-requisites
 You must meet the following criteria to be able to participate in the public preview:
-* The Kubernetes application should have a Helm-chart based application that is free of malware/vulnerabilities.
+* The Kubernetes application should have a Helm-chart based application that is free of malware. We highly recommend doing a [pre-scan and fixing the vulnerabilities](https://github.com/bobmital/kubernetes-offer-samples/blob/05611a5c6485db980fe27fb8999af728382b547d/getting-started/Vulnerability-Scan.md) before you push the application through the pipeline.
 * You should have an active publishing tenant or access to a [Partner Center account](https://learn.microsoft.com/en-us/partner-center/overview).
 * You should be able to adhere to several of our supported [billing models (licensing options)](https://learn.microsoft.com/en-us/partner-center/marketplace/marketplace-containers). 
 * Must be actively engaged.
