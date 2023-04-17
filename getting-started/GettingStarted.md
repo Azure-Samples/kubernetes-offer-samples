@@ -43,6 +43,9 @@ If you have encountered any issues or failures in packaging, deploying, or publi
 * [Troubleshoot issues while publishing a Kubernetes application-based Container offer](https://learn.microsoft.com/en-us/partner-center/marketplace/azure-container-troubleshoot)
 * [Troubleshoot the failed deployment of a Kubernetes application offer](https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/troubleshoot-failed-kubernetes-deployment-offer)
 
+### Sample app
+This [k8s-offer-azure-vote app](kubernetes-offer-samples/tree/main/samples) is a good sample for you to play with and try out the steps above.
+
 ### Microsoft contacts
 For any additional questions not covered by this guide, feel free to reach out to the Microsoft Azure Kubernetes Service (AKS) Ecosystem product team at tcontainerpreview@service.microsoft.com.
 
