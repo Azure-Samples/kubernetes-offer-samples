@@ -1,17 +1,14 @@
 # Getting Started: Publishing a Kubernetes App on Azure Marketplace
 
 ### Introduction
-Thank you for joining us in our Kubernetes Apps public preview program. We’re delighted to have you participate in our vibrant and ever-growing ecosystem, where you can publish and monetize your Kubernetes application. This document has all the necessary steps to get you started and can enable you to publish your application in 1-2 weeks to the Kubernetes marketplace in Azure.
+Thank you for joining us in our Kubernetes Apps Marketplace program. We’re delighted to have you participate in our vibrant and ever-growing ecosystem, where you can publish and monetize your Kubernetes application. This document has all the necessary steps to get you started and can enable you to publish your application in 1-2 weeks to the Kubernetes marketplace in Azure.
 
 ### Pre-requisites
-You must meet the following criteria to be able to participate in the public preview:
-* The Kubernetes application should have a Helm-chart based application that is free of malware. We highly recommend doing a [pre-scan and fixing the vulnerabilities](https://github.com/bobmital/kubernetes-offer-samples/blob/05611a5c6485db980fe27fb8999af728382b547d/getting-started/Vulnerability-Scan.md) before you push the application through the pipeline.
+You must meet the following criteria to be able to participate:
+* The Kubernetes application should have a Helm-chart based application that is free of malware and vulnerabilities. We highly recommend doing a [pre-scan and fixing the vulnerabilities](https://github.com/bobmital/kubernetes-offer-samples/blob/05611a5c6485db980fe27fb8999af728382b547d/getting-started/Vulnerability-Scan.md) before you push the application through the pipeline.
 * You should have an active publishing tenant or access to a [Partner Center account](https://learn.microsoft.com/en-us/partner-center/overview).
 * You should be able to adhere to several of our supported [billing models (licensing options)](https://learn.microsoft.com/en-us/partner-center/marketplace/marketplace-containers). 
-* Must be actively engaged.
-
-### ISV expectations
-If the necessary steps are followed, you can publish the application within 1-2 weeks! We expect you to be actively engaged and contact us if you face any necessary roadblocks after following the required steps. We appreciate your participation in our program. However, if we notice that your engagement levels have decreased, we may need to give priority to other participants due to the high volume of interest we receive.
+* Must be actively engaged. If we notice that your engagement levels have decreased, we may need to give priority to other participants due to the high volume of interest we receive.
 
 ### Training
 The Following training materials will help accelerate your onboarding onto the Azure Marketplace.
@@ -39,6 +36,12 @@ This step walks through the process that an end consumer would go through to dep
 
 #### Step 4: If you plan to stop activity on your offer, you can proceed by Stop selling the app. The "Stop Sell" of an offer/plan means no future acquisitions of the offer/plan are possible via Azure Marketplace. Since these are consumption-based plans for now, the existing deployments will continue to emit usage till customers uninstall the extension.
 * [Stop distribution of an offer or plan](https://learn.microsoft.com/en-us/partner-center/marketplace/update-existing-offer#stop-distribution-of-an-offer-or-plan)
+
+### Troubleshooting
+If you have encountered any issues or failures in packaging, deploying, or publishing your application, please follow the guide in the relevant troubleshotting documentation below.
+* [Troubleshoot issues while packaging a Kubernetes application-based Container offer](https://learn.microsoft.com/en-us/partner-center/marketplace/azure-container-packaging-troubleshoot)
+* [Troubleshoot issues while publishing a Kubernetes application-based Container offer](https://learn.microsoft.com/en-us/partner-center/marketplace/azure-container-troubleshoot)
+* [Troubleshoot the failed deployment of a Kubernetes application offer](https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/troubleshoot-failed-kubernetes-deployment-offer)
 
 ### Microsoft contacts
 For any additional questions not covered by this guide, feel free to reach out to the Microsoft Azure Kubernetes Service (AKS) Ecosystem product team at tcontainerpreview@service.microsoft.com.
