@@ -51,4 +51,5 @@ For any additional questions not covered by this guide, feel free to reach out t
 
 ### Glossary of terms
 **Kubernetes Application**: A Kubernetes Application on Azure Marketplace refers to a software application that is packaged and available for purchase and deployment through Azure Marketplace and is designed to be deployed and managed on a Kubernetes cluster running on AKS.
+
 **Azure Container Offer**: A transactable offer type in the Microsoft commercial marketplace that enables running containers on AKS in the customer’s tenant.
