@@ -9,7 +9,7 @@ products:
 
 # Azure Marketplace Kubernetes offer samples
 
-This repository contains samples for creating an Azure Marketplace Kubernetes offer. 
+This repository contains samples for creating Kubernetes Applications in Azure Marketplace.
 
 ## Samples in this repo
 
