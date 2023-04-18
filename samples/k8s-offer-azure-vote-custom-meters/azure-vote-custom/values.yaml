@@ -2,15 +2,17 @@
 title: "Azure Vote Custom App"
 value1: Cats
 value2: Dogs
-getvalue: 'Get last one day usage' 
+getvalue: 'Get last one day usage'
+# Metering API usage event call needs planId and resourceId , also clientId is needed to generate token for authentication with metering api
+# for more information please refer: https://learn.microsoft.com/en-us/partner-center/marketplace/marketplace-metering-service-apis
 global:
   azure:
     identity:
-      clientId: ""
+      clientId: "DONOTMODIFY" # Azure populates this values at deployment time
     marketplace:
-      planId: ""
+      planId: "DONOTMODIFY" # Azure populates this values at deployment time
     extension:
-      resourceId: ""
+      resourceId: "DONOTMODIFY" # Azure populates this values at deployment time
     images:
       frontend:
         digest: sha256:2be49df94115d6b88077c0a807a3fe26311bb24fde19ff6b4bf7fbefa965aa4b

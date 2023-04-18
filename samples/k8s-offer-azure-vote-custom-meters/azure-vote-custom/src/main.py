@@ -57,7 +57,9 @@ if app.config['SHOWHOST'] == "true":
 # Init Redis
 if not r.get(button1): r.set(button1,0)
 if not r.get(button2): r.set(button2,0)
+# store number of votes casted until synced with metering api using VOTES key
 if not r.get('VOTES'): r.set('VOTES',0)
+# store last sync time with metering api using LASTSYNC key
 if not r.get('LASTSYNC'): r.set('LASTSYNC',str(datetime.datetime.now() + datetime.timedelta(days=-1)))
 
 @app.route('/', methods=['GET', 'POST'])
@@ -105,6 +107,7 @@ def index():
             vote2 = r.get(button2).decode('utf-8')  
             
             r.incr('VOTES',1)
+            # get last sync time from cache and if the usage is sent within last hour, store the votes in cache
             lastSyncTime = datetime.datetime.strptime(r.get('LASTSYNC').decode('utf-8'), '%Y-%m-%d %H:%M:%S.%f')
             totalIngestableVotes = r.get('VOTES').decode('utf-8')
             if lastSyncTime < (datetime.datetime.now() + datetime.timedelta(hours=-1)):
@@ -113,7 +116,9 @@ def index():
                 meteringResponse = "Metering API Response for the click usage for {0} votes in last hour(s), status: {1} response: {2}".format(totalIngestableVotes, resp.status_code, json.dumps(pretty_json, indent=2))
 
                 if resp.status_code == 200:
+                    # reset number of votes to be synced with metering api
                     r.set('VOTES',0)
+                    # set last sync time with metering api
                     r.set('LASTSYNC', str(datetime.datetime.now()))
 
             else:
@@ -122,7 +127,9 @@ def index():
             # Return results
             return render_template("index.html", value1=int(vote1), value2=int(vote2), button1=button1, button2=button2, title=title, button4=button4, meteringResponse=meteringResponse)
 
+# getMsiToken gets the MSI identity based authentication token from IMDS service running on the AKS cluster (endpoint http://169.254.169.254)
 def getMsiToken():
+    # audience for the token to be generated 
     resource = '20e940b3-4c77-4b0b-9a53-9e16a1b010a7'
     client_id = os.environ['CLIENT_ID']
     url = "http://169.254.169.254/metadata/identity/oauth2/token?api-version=2018-02-01&client_id={0}&resource={1}".format(client_id,resource)
@@ -134,16 +141,25 @@ def getMsiToken():
 
     return resp.json()
 
+# sendCustomUsageToMeteringAPI sends usage event to metering service 
 def sendCustomUsageToMeteringAPI(quantity : str):
+    # metering service production URL
     url = 'https://marketplaceapi.microsoft.com/api/usageEvent?api-version=2018-08-31'
+    # get resourceId (application's Azure resource id) from environment variable
     resourceId = os.environ['EXTENSION_RESOURCE_ID']
+    # get plan id from environment variable
     planId = os.environ['PLAN_ID']
     
+    # generate a guid to be used as a correlation id which can be used for debugging purposes with metering service
     correlationId = uuid.uuid4()
+    # get MSI identity based bearer token
     token = getMsiToken()
     accessToken = "Bearer {0}".format(token["access_token"])
 
+    # add headers
     headers = {'authorization': accessToken, 'x-ms-correlationid': str(correlationId), 'content-type': 'application/json'}
+
+    # create usage payload, or more information please refer: https://learn.microsoft.com/en-us/partner-center/marketplace/marketplace-metering-service-apis
     usage ={ 
                 'resourceUri' : resourceId,
                 'planId' : planId,
@@ -158,14 +174,18 @@ def sendCustomUsageToMeteringAPI(quantity : str):
     return resp
 
 def getCustomUsageFromMeteringAPI():
+    # metering service production URL to get usage events already ingested, add appropriate duration
     url = 'https://marketplaceapi.microsoft.com/api/usageEvents?api-version=2018-08-31&usageStartDate={0}'.format(str(datetime.datetime.now() + datetime.timedelta(days=-1)))
+    # generate a guid to be used as a correlation id which can be used for debugging purposes with metering service
     correlationId = uuid.uuid4()
 
     print("getCustomUsageFromMeteringAPI using corretion id {0}".format(correlationId))
 
+    # get MSI identity based bearer token
     token = getMsiToken()
     accessToken = "Bearer {0}".format(token["access_token"])
 
+    # add headers
     headers = {'authorization': accessToken, 'x-ms-correlationid': str(correlationId), 'content-type': 'application/json'}
     print("getCustomUsageFromMeteringAPI getting usage in last 1 days")
     resp = requests.get(url, headers=headers)

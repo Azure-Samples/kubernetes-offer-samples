@@ -1,6 +1,6 @@
 # azure-vote-custom
 
-The Azure Vote Custom application is a simple sample to demonstrate custom meters usage in a containerized app. The application consists of two pods, one running a flask web form, and the second a redis instance for temporary data storage. This application can be used as a sample app for custom meters based offers on Azure marketplace.
+The Azure Vote custom meters application is a simple sample to demonstrate custom meters usage in a Kubernetes application. The application consists of two pods, one running a flask web form, and the second a redis instance for temporary data storage. The application submits usage data to Azure Commerce Metering API for every vote casted in the last hour(s).
 
 ## Installing the Chart
 
@@ -38,7 +38,7 @@ helm install azure-samples/azure-vote-custom
 ![azure-vote cats and dogs](../images/vote1.png)
 
 ```
-helm install azure-samples/azure-vote --set title="Winter Sports" --set value1=Ski --set value2=Snowboard
+helm install azure-samples/azure-vote-custom --set title="Winter Sports" --set value1=Ski --set value2=Snowboard
 ```
 
 ![azure-vote ski and snowboard](../images/vote2.png)
