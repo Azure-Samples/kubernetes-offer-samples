@@ -1,0 +1,32 @@
+# Azure Vote UI control
+title: "Azure Vote Custom App"
+value1: Cats
+value2: Dogs
+getvalue: 'Get last one day usage'
+
+global:
+  azure:
+    identity:
+      # Application's Managed Service Identity (MSI) Client ID. ClientID can be used to generate authentication token to communicate to external services like Microsoft Marketplace Metering API
+      clientId: "DONOTMODIFY" # Azure populates this value at deployment time
+    marketplace:
+      # id of the plan purchased for the Azure Marketplace Kubernetes application,to be used in usage event payload to metering api, for more information please refer: https://learn.microsoft.com/en-us/partner-center/marketplace/marketplace-metering-service-apis 
+      planId: "DONOTMODIFY" # Azure populates this value at deployment time
+    extension:
+      # resource id of the Azure Marketplace Kubernetes application,to be used in usage event payload to metering api, for more information please refer: https://learn.microsoft.com/en-us/partner-center/marketplace/marketplace-metering-service-apis 
+      resourceId: "DONOTMODIFY" # application's Azure Resource ID, Azure populates this value at deployment time
+    images:
+      frontend:
+        digest: sha256:2be49df94115d6b88077c0a807a3fe26311bb24fde19ff6b4bf7fbefa965aa4b
+        image: azure-vote-custom-front
+        registry: azurek8ssamples.azurecr.io/marketplaceimages
+      backend:
+        digest: sha256:87583c95fd2253658fdd12e765addbd2126879af86a90b34efc09457486b21b1
+        image: azure-vote-back
+        registry: azurek8ssamples.azurecr.io/marketplaceimages
+# how many frontends do we want?
+replicaCount: 1
+
+# Service controls
+serviceNameFront: azure-vote-custom-front
+serviceType: LoadBalancer
