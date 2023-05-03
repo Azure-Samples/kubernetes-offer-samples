@@ -43,13 +43,6 @@
         },
         "type": "bool"
       },
-        "targetNamespace": {
-        "defaultValue": "default",
-        "metadata": {
-          "description": "The namespace of the extension."
-        },
-        "type": "string"
-      },
         "vmSize": {
             "type": "String",
             "defaultValue": "Standard_DS2_v2",
@@ -146,8 +139,7 @@
         "plan-publisher": "DONOTMODIFY",
         "plan-offerID": "DONOTMODIFY",
         "releaseTrain": "DONOTMODIFY",
-        "clusterExtensionTypeName": "DONOTMODIFY",
-        "targetNamespace":  "[if(equals(parameters('targetNamespace'),'default'), parameters('extensionResourceName'), parameters('targetNamespace'))]"
+        "clusterExtensionTypeName": "DONOTMODIFY"
     },
     "resources": [
         {
@@ -216,11 +208,6 @@
                 "extensionType": "[variables('clusterExtensionTypeName')]",
                 "autoUpgradeMinorVersion": "[parameters('autoUpgradeMinorVersion')]",
                 "releaseTrain": "[variables('releaseTrain')]",
-                "scope": {
-                "namespace": {
-                "targetNamespace": "[variables('targetNamespace')]"
-                 }
-                 },
                 "configurationSettings": {
                     "title": "[parameters('app-title')]",
                     "value1": "[parameters('app-value1')]",

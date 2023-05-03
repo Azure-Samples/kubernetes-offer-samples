@@ -171,18 +171,6 @@
 						"visible": true
 					},
 					{
-						"name": "targetNamespace",
-						"type": "Microsoft.Common.TextBox",
-						"label": "Installation namespace",
-						"defaultValue": "default",
-						"toolTip": "The Kubernetes namespace in which the extension will be installed. If the namespace does not exist, it will be created. Extension resource name is used as default value",
-						"constraints": {
-						  "required": true,
-						  "regex": "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$",
-						  "validationMessage": "Only lowercase alphanumeric characters or '-' ara allowed, and must start and end with an alphanumeric character."
-						}
-					  },
-					{
 						"name": "title",
 						"type": "Microsoft.Common.TextBox",
 						"label": "Azure Vote Extension Title",
@@ -240,8 +228,7 @@
 			"app-title": "[steps('extensionDetails').title]",
 			"app-value1": "[steps('extensionDetails').value1]",
 			"app-value2": "[steps('extensionDetails').value2]",
-			"autoUpgradeMinorVersion": "[steps('extensionDetails').autoUpgradeMinorVersion]",
-			"targetNamespace": "[steps('extensionDetails').targetNamespace]"
+			"autoUpgradeMinorVersion": "[steps('extensionDetails').autoUpgradeMinorVersion]"
 		}
 	}
 }
