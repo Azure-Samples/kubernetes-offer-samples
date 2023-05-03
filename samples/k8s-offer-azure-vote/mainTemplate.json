@@ -36,13 +36,6 @@
         "app-value2": {
             "type": "String"
         },
-        "autoUpgradeMinorVersion": {
-        "defaultValue": false,
-        "metadata": {
-          "description": "Allow auto upgrade of minor version for the extension."
-        },
-        "type": "bool"
-      },
         "vmSize": {
             "type": "String",
             "defaultValue": "Standard_DS2_v2",
@@ -206,7 +199,7 @@
             "name": "[parameters('extensionResourceName')]",          
             "properties": {
                 "extensionType": "[variables('clusterExtensionTypeName')]",
-                "autoUpgradeMinorVersion": "[parameters('autoUpgradeMinorVersion')]",
+                "autoUpgradeMinorVersion": true,
                 "releaseTrain": "[variables('releaseTrain')]",
                 "configurationSettings": {
                     "title": "[parameters('app-title')]",

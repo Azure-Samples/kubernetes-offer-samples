@@ -131,7 +131,7 @@
 								"type": "Microsoft.Common.CheckBox",
 								"label": "Enable auto scaling",
 								"toolTip": "Enable auto scaling",
-								"defaultValue": true						
+								"defaultValue": true
 							},
 							{
 								"name": "vmCount",
@@ -154,8 +154,8 @@
 				]
 			},
 			{
-				"name": "extensionDetails",
-				"label": "Cluster Extension Details",
+				"name": "applicationDetails",
+				"label": "Cluster Application Details",
 				"elements": [
 					{
 						"name": "extensionResourceName",
@@ -179,7 +179,7 @@
 						"constraints": {
 							"required": true,
 							"regex": "^[a-z0-9A-Z ]{1,30}$",
-							"validationMessage": "Only alphanumeric characters are allowed, and the value must be 6-30 characters long."						 
+							"validationMessage": "Only alphanumeric characters are allowed, and the value must be 6-30 characters long."
 						}
 					},
 					{
@@ -191,7 +191,7 @@
 						"constraints": {
 							"required": true,
 							"regex": "^[a-z0-9A-Z]{1,30}$",
-							"validationMessage": "Only alphanumeric characters are allowed, and the value must be 6-30 characters long."						 
+							"validationMessage": "Only alphanumeric characters are allowed, and the value must be 6-30 characters long."
 						}
 					},
 					{
@@ -203,7 +203,7 @@
 						"constraints": {
 							"required": true,
 							"regex": "^[a-z0-9A-Z]{1,30}$",
-							"validationMessage": "Only alphanumeric characters are allowed, and the value must be 6-30 characters long."						 
+							"validationMessage": "Only alphanumeric characters are allowed, and the value must be 6-30 characters long."
 						}
 					},
 					{
@@ -221,14 +221,14 @@
 			"createNewCluster": "[basics('createNewCluster')]",
 			"clusterResourceName": "[if(basics('createNewCluster'), steps('clusterDetails').newClusterSection.newClusterResourceName, steps('clusterDetails').existingClusterSection.existingClusterResourceName)]",
 			"kubernetesVersion": "[steps('clusterDetails').newClusterSection.kubernetesVersion]",
-			"extensionResourceName": "[steps('extensionDetails').extensionResourceName]",
+			"extensionResourceName": "[steps('applicationDetails').extensionResourceName]",
 			"vmSize": "[steps('clusterDetails').newClusterSection.vmSize]",
 			"vmEnableAutoScale": "[steps('clusterDetails').newClusterSection.enableAutoScaling]",
 			"vmCount": "[steps('clusterDetails').newClusterSection.vmCount]",
-			"app-title": "[steps('extensionDetails').title]",
-			"app-value1": "[steps('extensionDetails').value1]",
-			"app-value2": "[steps('extensionDetails').value2]",
-			"autoUpgradeMinorVersion": "[steps('extensionDetails').autoUpgradeMinorVersion]"
+			"app-title": "[steps('applicationDetails').title]",
+			"app-value1": "[steps('applicationDetails').value1]",
+			"app-value2": "[steps('applicationDetails').value2]",
+			"autoUpgradeMinorVersion": "[steps('applicationDetails').autoUpgradeMinorVersion]"
 		}
 	}
 }
