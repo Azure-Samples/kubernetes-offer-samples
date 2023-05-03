@@ -61,3 +61,8 @@ A few variables are required to use to construct the final configuration setting
 
 - Union mandatory values and dynamic settings if it is set as json
  ![Alt text](images/ARMTemplate-constructFinalConfigurationSettingAsJson.PNG)
+
+
+
+# Note
+Please note this sample includes only a small subset of the files. The files in this sample folder contains the additional changes required on top of the base sample application '[k8s-offer-azure-vote](../k8s-offer-azure-vote/)'.
