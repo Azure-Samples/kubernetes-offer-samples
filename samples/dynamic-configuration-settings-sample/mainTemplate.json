@@ -36,7 +36,7 @@
         "app-value2": {
             "type": "String"
         },
-        "labels": {
+        "dynamicSettings": {
             "type": "array"
         },
         "vmSize": {
@@ -136,24 +136,30 @@
         "plan-offerID": "DONOTMODIFY",
         "releaseTrain": "DONOTMODIFY",
         "clusterExtensionTypeName": "DONOTMODIFY",
+
         "copy": [
             {
-                "count": "[length(parameters('labels'))]",
-                "input": "[createObject(concat('labels.', parameters('labels')[copyIndex('inputs_array')].labelName), union(createObject('value', ''), parameters('labels')[copyIndex('inputs_array')]).labelValue)]",
-                "name": "inputs_array"
+                "count": "[length(parameters('dynamicSettings'))]",
+                "input": "[createObject(concat('labels.', parameters('dynamicSettings')[copyIndex('dynamicSettings_array')].labelName), union(createObject('value', ''), parameters('dynamicSettings')[copyIndex('dynamicSettings_array')]).labelValue)]",
+                "name": "dynamicSettings_array"
             }
         ],
-        "configurationSettings": "[if(or(variables('is_labels_defaultValue'), empty(parameters('labels'))), variables('azurevote-inputs'), union(variables('azurevote-inputs'), json(variables('inputs_t3'))))]",
-        "is_labels_defaultValue": "[equals(replace(string(parameters('labels')), ' ', ''), '[{\"labelName\":\"\",\"labelValue\":\"\"}]')]",
-        "inputs_string": "[concat(string(variables('inputs_array')), '_END_')]",
-        "inputs_t1": "[replace(variables('inputs_string'), '[{\"', '{\"')]",
-        "inputs_t2": "[replace(variables('inputs_t1'), '}]_END_', '}')]",
-        "inputs_t3": "[replace(variables('inputs_t2'), '},{\"', ',\"')]",
-        "azurevote-inputs": {
+        "dynamicSettings_string": "[concat(string(variables('dynamicSettings_array')), '_END_')]",
+        "dynamicSettings_trim1": "[replace(variables('dynamicSettings_string'), '[{\"', '{\"')]",
+        "dynamicSettings_trim2": "[replace(variables('dynamicSettings_trim1'), '}]_END_', '}')]",
+        "dynamicSettings_trim3": "[replace(variables('dynamicSettings_trim2'), '},{\"', ',\"')]",
+        "dynamicSettings_json": "[json(variables('dynamicSettings_trim3'))]",
+
+        "is_dynamicSettings_empty": "[or(variables('is_dynamicSettings_defaultState'), empty(parameters('dynamicSettings')))]",
+        "is_dynamicSettings_defaultState": "[equals(replace(string(parameters('dynamicSettings')), ' ', ''), '[{\"labelName\":\"\",\"labelValue\":\"\"}]')]",
+
+        "mandatory_setting_inputs": {
             "title": "[parameters('app-title')]",
             "value1": "[parameters('app-value1')]",
             "value2": "[parameters('app-value2')]"
-        }
+        },
+
+        "configurationSettings": "[if(variables('is_dynamicSettings_empty'), variables('mandatory_setting_inputs'), union(variables('mandatory_setting_inputs'), variables('dynamicSettings_json') ))]"
     },
     "resources": [
         {

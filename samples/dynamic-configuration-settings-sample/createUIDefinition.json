@@ -202,51 +202,79 @@
 						}
 					},
 					{
-						"name": "labels",
-						"type": "Microsoft.Common.EditableGrid",
-						"label": "Additional labels",
-						"toolTip": "Labels",
-						"ariaLabel": "Add additional labels to your application",
-						"constraints": {
-							"width": "Full",
-							"rows": {
-								"count": {
-									"min": 0,
-									"max": 10
+						"name": "dynamicSettingsSection",
+						"type": "Microsoft.Common.Section",
+						"label": "(Optional) Additional Labels",
+						"elements": [
+							{
+								"name": "appParamsTextBlock",
+								"type": "Microsoft.Common.TextBlock",
+								"options": {
+									"text": "The editable grid below allows you to add additional labels to your application pods. For more detail about the UI control, please check ",
+									"link": {
+										"label": "microsoft-common-editablegrid",
+										"uri": "https://learn.microsoft.com/en-us/azure/azure-resource-manager/managed-applications/microsoft-common-editablegrid"
+									}
 								}
 							},
-							"columns": [
-								{
-									"id": "labelName",
-									"header": "Name",
-									"element": {
-										"type": "Microsoft.Common.TextBox",
-										"placeholder": "Label Name",
-										"toolTip": "Only alphanumeric characters and hyphen are allowed, and the value must be 1-30 characters long.",
-										"constraints": {
-											"required": true,
-											"regex": "^[a-zA-Z0-9-]{1,30}$",
-											"validationMessage": "Only alphanumeric characters and hyphen are allowed, and the value must be 1-30 characters long."
-										}
-									}
-								},
-								{
-									"id": "labelValue",
-									"header": "Value",
-									"element": {
-										"type": "Microsoft.Common.TextBox",
-										"placeholder": "Label Value",
-										"toolTip": "Only alphanumeric characters, dot and hyphen are allowed, and the value must be 1-30 characters long.",
-										"constraints": {
-											"required": true,
-											"regex": "^[a-zA-Z0-9-.]{1,30}$",
-											"validationMessage": "Only alphanumeric characters, dot and hyphen are allowed, and the value must be 1-30 characters long."
-										}
-									}
+							{
+								"name": "appParamsInfoBox",
+								"type": "Microsoft.Common.InfoBox",
+								"options": {
+									"icon": "Info",
+									"text": "Below label name will be transformed to labels.yourlabelname once it is passed into the ARM Template so that helm chart can be consumed as override values. Click to learn more about helm values override.",
+									"uri": "https://helm.sh/docs/chart_template_guide/values_files/"
 								}
-							],
-							"visible": true
-						}
+							},
+							{
+								"name": "dynamicSettings",
+								"type": "Microsoft.Common.EditableGrid",
+								"label": "Additional labels",
+								"toolTip": "Labels",
+								"ariaLabel": "Add additional labels to your application",
+								"constraints": {
+									"width": "Full",
+									"rows": {
+										"count": {
+											"min": 0,
+											"max": 10
+										}
+									},
+									"columns": [
+										{
+											"id": "labelName",
+											"header": "Name",
+											"element": {
+												"type": "Microsoft.Common.TextBox",
+												"placeholder": "Label Name",
+												"toolTip": "Only alphanumeric characters and hyphen are allowed, and the value must be 1-30 characters long.",
+												"constraints": {
+													"required": true,
+													"regex": "^[a-zA-Z0-9-]{1,30}$",
+													"validationMessage": "Only alphanumeric characters and hyphen are allowed, and the value must be 1-30 characters long."
+												}
+											}
+										},
+										{
+											"id": "labelValue",
+											"header": "Value",
+											"element": {
+												"type": "Microsoft.Common.TextBox",
+												"placeholder": "Label Value",
+												"toolTip": "Only alphanumeric characters, dot and hyphen are allowed, and the value must be 1-30 characters long.",
+												"constraints": {
+													"required": true,
+													"regex": "^[a-zA-Z0-9-.]{1,30}$",
+													"validationMessage": "Only alphanumeric characters, dot and hyphen are allowed, and the value must be 1-30 characters long."
+												}
+											}
+										}
+									],
+									"visible": true
+								}
+							}
+						],
+						"visible": true
 					}
 				]
 			}
@@ -263,7 +291,7 @@
 			"app-title": "[steps('extensionDetails').title]",
 			"app-value1": "[steps('extensionDetails').value1]",
 			"app-value2": "[steps('extensionDetails').value2]",
-			"labels": "[steps('extensionDetails').labels]"
+			"dynamicSettings": "[steps('extensionDetails').dynamicSettingsSection.dynamicSettings]"
 		}
 	}
 }
