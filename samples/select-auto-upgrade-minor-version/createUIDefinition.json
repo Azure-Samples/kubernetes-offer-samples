@@ -210,8 +210,7 @@
 						"name": "autoUpgradeMinorVersion",
 						"type": "Microsoft.Common.CheckBox",
 						"label": "Autoupgrade Minor Version",
-						"toolTip": "Controls whether to allow auto upgrade of minor versions for the extension(application).",
-						"defaultValue": false
+						"toolTip": "Controls whether to allow auto upgrade of minor versions for the extension(application)."					
 					}
 				]
 			}
