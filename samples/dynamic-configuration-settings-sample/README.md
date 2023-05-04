@@ -10,7 +10,7 @@ products:
 
 # Dynamic configuration settings sample
 
-This folder contains samples that shows how ISV can combinee dynamic and mandatory settings in UIDefinition and consume them in ARM Template so that they can be passed to Kubernetes Extension Type as Configuration Settings.
+This folder contains samples that shows how ISV can combine dynamic and mandatory settings in UIDefinition and consume them in ARM Template so that they can be passed to Kubernetes Extension Type as Configuration Settings.
 
 ## The resulting UI Definition will shows up as follow:
 
