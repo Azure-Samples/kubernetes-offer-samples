@@ -10,8 +10,33 @@
 					"visible": "[basics('createNewCluster')]",
 					"allowedValues": [
 						"eastus",
+						"eastus2",
+						"southcentralus",
+						"westus2",						
+						"westus3",
+						"australiaeast",
+						"southeastasia",
+						"northeurope",						
+						"uksouth",
+						"westeurope",
+						"centralus",
+						"southafricanorth",
+						"centralindia",
+						"eastasia",
+						"japaneast",
+						"koreacentral",
+						"canadacentral",
+						"francecentral",
+						"germanywestcentral",
+						"norwayeast",						
+						"switzerlandnorth",
+						"northcentralus",
+						"westus",
 						"westcentralus",
-						"westeurope"
+						"australiasoutheast",
+						"japanwest",
+						"southindia",
+						"ukwest"						
 					]
 				},
 				"resourceGroup": {
@@ -155,7 +180,7 @@
 			},
 			{
 				"name": "applicationDetails",
-				"label": "Cluster Application Details",
+				"label": "Application Details",
 				"elements": [
 					{
 						"name": "extensionResourceName",
