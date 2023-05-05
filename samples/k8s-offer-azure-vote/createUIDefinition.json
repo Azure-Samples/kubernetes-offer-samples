@@ -12,11 +12,11 @@
 						"eastus",
 						"eastus2",
 						"southcentralus",
-						"westus2",						
+						"westus2",
 						"westus3",
 						"australiaeast",
 						"southeastasia",
-						"northeurope",						
+						"northeurope",
 						"uksouth",
 						"westeurope",
 						"centralus",
@@ -28,7 +28,7 @@
 						"canadacentral",
 						"francecentral",
 						"germanywestcentral",
-						"norwayeast",						
+						"norwayeast",
 						"switzerlandnorth",
 						"northcentralus",
 						"westus",
@@ -36,7 +36,7 @@
 						"australiasoutheast",
 						"japanwest",
 						"southindia",
-						"ukwest"						
+						"ukwest"
 					]
 				},
 				"resourceGroup": {
@@ -156,7 +156,7 @@
 								"type": "Microsoft.Common.CheckBox",
 								"label": "Enable auto scaling",
 								"toolTip": "Enable auto scaling",
-								"defaultValue": true						
+								"defaultValue": true
 							},
 							{
 								"name": "vmCount",
@@ -204,7 +204,7 @@
 						"constraints": {
 							"required": true,
 							"regex": "^[a-z0-9A-Z ]{1,30}$",
-							"validationMessage": "Only alphanumeric characters are allowed, and the value must be 6-30 characters long."						 
+							"validationMessage": "Only alphanumeric characters are allowed, and the value must be 6-30 characters long."
 						}
 					},
 					{
@@ -216,7 +216,7 @@
 						"constraints": {
 							"required": true,
 							"regex": "^[a-z0-9A-Z]{1,30}$",
-							"validationMessage": "Only alphanumeric characters are allowed, and the value must be 6-30 characters long."						 
+							"validationMessage": "Only alphanumeric characters are allowed, and the value must be 6-30 characters long."
 						}
 					},
 					{
@@ -228,7 +228,7 @@
 						"constraints": {
 							"required": true,
 							"regex": "^[a-z0-9A-Z]{1,30}$",
-							"validationMessage": "Only alphanumeric characters are allowed, and the value must be 6-30 characters long."						 
+							"validationMessage": "Only alphanumeric characters are allowed, and the value must be 6-30 characters long."
 						}
 					}
 				]

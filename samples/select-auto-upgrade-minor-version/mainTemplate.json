@@ -42,7 +42,7 @@
         },
         "app-value2": {
             "type": "String"
-        },  
+        },
         "vmSize": {
             "type": "String",
             "defaultValue": "Standard_DS2_v2",

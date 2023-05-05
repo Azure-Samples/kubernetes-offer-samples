@@ -137,7 +137,7 @@
     "resources": [
         {
             "type": "Microsoft.ContainerService/managedClusters",
-            "condition" : "[parameters('createNewCluster')]",
+            "condition": "[parameters('createNewCluster')]",
             "apiVersion": "2022-11-01",
             "name": "[parameters('clusterResourceName')]",
             "location": "[parameters('location')]",
@@ -192,11 +192,11 @@
                     }
                 }
             }
-        },  
+        },
         {
             "type": "Microsoft.KubernetesConfiguration/extensions",
             "apiVersion": "2022-11-01",
-            "name": "[parameters('extensionResourceName')]",          
+            "name": "[parameters('extensionResourceName')]",
             "properties": {
                 "extensionType": "[variables('clusterExtensionTypeName')]",
                 "autoUpgradeMinorVersion": true,
