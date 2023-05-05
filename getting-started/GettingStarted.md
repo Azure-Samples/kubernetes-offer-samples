@@ -34,7 +34,8 @@ In order to simplify the process of Vulnerability scanning and certification, Mi
 This step walks through the process that an end consumer would go through to deploy the application onto their Kubernetes cluster.
 * [Deploy a container offer from Azure Marketplace (preview)](https://learn.microsoft.com/en-us/azure/aks/deploy-marketplace)
 
-#### Step 4: If you plan to stop activity on your offer, you can proceed by Stop selling the app. The "Stop Sell" of an offer/plan means no future acquisitions of the offer/plan are possible via Azure Marketplace. Since these are consumption-based plans for now, the existing deployments will continue to emit usage till customers uninstall the extension.
+#### Step 4: Stop sell
+If you plan to stop activity on your offer, you can proceed by Stop selling the app. The "Stop Sell" of an offer/plan means no future acquisitions of the offer/plan are possible via Azure Marketplace. Since these are consumption-based plans for now, the existing deployments will continue to emit usage till customers uninstall the extension.
 * [Stop distribution of an offer or plan](https://learn.microsoft.com/en-us/partner-center/marketplace/update-existing-offer#stop-distribution-of-an-offer-or-plan)
 
 ### Troubleshooting
