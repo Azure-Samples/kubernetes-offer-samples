@@ -1,0 +1,11 @@
+applicationName: com.contoso.azurevote.dynamiclabel
+publisher: "Contoso"
+description: "Example UI Definition and ARM Template on how to take include labels and other configuration settings into your Kubernetes apps."
+version: 1.0.1 #Must be in the format of #.#.#
+helmChart: "../k8s-offer-azure-vote/azure-vote"
+clusterArmTemplate: "./mainTemplate.json"
+uiDefinition: "./createUIDefinition.json"
+registryServer: "youracr.azurecr.io"
+extensionRegistrationParameters:
+  defaultScope: "cluster" # cluster or namespace 
+  namespace: "contoso" # Specify the namespace the extension will install into. This property is required when defaultScope field value is chosen as 'cluster'
