@@ -27,6 +27,13 @@
                 "description": "The location of AKS resource."
             }
         },
+        "autoUpgradeMinorVersion": {
+            "defaultValue": false,
+            "metadata": {
+                "description": "Allow auto upgrade of minor version for the extension."
+            },
+            "type": "bool"
+        },
         "app-title": {
             "type": "String"
         },
@@ -199,7 +206,7 @@
             "name": "[parameters('extensionResourceName')]",
             "properties": {
                 "extensionType": "[variables('clusterExtensionTypeName')]",
-                "autoUpgradeMinorVersion": true,
+                "autoUpgradeMinorVersion": "[parameters('autoUpgradeMinorVersion')]",
                 "releaseTrain": "[variables('releaseTrain')]",
                 "configurationSettings": {
                     "title": "[parameters('app-title')]",

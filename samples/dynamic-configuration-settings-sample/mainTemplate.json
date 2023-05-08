@@ -36,6 +36,9 @@
         "app-value2": {
             "type": "String"
         },
+        "dynamicSettings": {
+            "type": "array"
+        },
         "vmSize": {
             "type": "String",
             "defaultValue": "Standard_DS2_v2",
@@ -75,7 +78,7 @@
         },
         "kubernetesVersion": {
             "type": "String",
-            "defaultValue": "1.24.0",
+            "defaultValue": "1.26.0",
             "metadata": {
                 "description": "The version of Kubernetes."
             }
@@ -132,7 +135,31 @@
         "plan-publisher": "DONOTMODIFY",
         "plan-offerID": "DONOTMODIFY",
         "releaseTrain": "DONOTMODIFY",
-        "clusterExtensionTypeName": "DONOTMODIFY"
+        "clusterExtensionTypeName": "DONOTMODIFY",
+
+        "copy": [
+            {
+                "count": "[length(parameters('dynamicSettings'))]",
+                "input": "[createObject(concat('labels.', parameters('dynamicSettings')[copyIndex('dynamicSettings_array')].labelName), union(createObject('value', ''), parameters('dynamicSettings')[copyIndex('dynamicSettings_array')]).labelValue)]",
+                "name": "dynamicSettings_array"
+            }
+        ],
+        "dynamicSettings_string": "[concat(string(variables('dynamicSettings_array')), '_END_')]",
+        "dynamicSettings_trim1": "[replace(variables('dynamicSettings_string'), '[{\"', '{\"')]",
+        "dynamicSettings_trim2": "[replace(variables('dynamicSettings_trim1'), '}]_END_', '}')]",
+        "dynamicSettings_trim3": "[replace(variables('dynamicSettings_trim2'), '},{\"', ',\"')]",
+        "dynamicSettings_json": "[json(variables('dynamicSettings_trim3'))]",
+
+        "is_dynamicSettings_empty": "[or(variables('is_dynamicSettings_defaultState'), empty(parameters('dynamicSettings')))]",
+        "is_dynamicSettings_defaultState": "[equals(replace(string(parameters('dynamicSettings')), ' ', ''), '[{\"labelName\":\"\",\"labelValue\":\"\"}]')]",
+
+        "mandatory_setting_inputs": {
+            "title": "[parameters('app-title')]",
+            "value1": "[parameters('app-value1')]",
+            "value2": "[parameters('app-value2')]"
+        },
+
+        "configurationSettings": "[if(variables('is_dynamicSettings_empty'), variables('mandatory_setting_inputs'), union(variables('mandatory_setting_inputs'), variables('dynamicSettings_json') ))]"
     },
     "resources": [
         {
@@ -201,11 +228,7 @@
                 "extensionType": "[variables('clusterExtensionTypeName')]",
                 "autoUpgradeMinorVersion": true,
                 "releaseTrain": "[variables('releaseTrain')]",
-                "configurationSettings": {
-                    "title": "[parameters('app-title')]",
-                    "value1": "[parameters('app-value1')]",
-                    "value2": "[parameters('app-value2')]"
-                },
+                "configurationSettings": "[variables('configurationSettings')]",
                 "configurationProtectedSettings": {
 
                 }

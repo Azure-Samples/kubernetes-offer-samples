@@ -12,6 +12,9 @@ spec:
       labels:
         app: vote-back-{{.Release.Name}}
         azure-extensions-usage-release-identifier: {{.Release.Name}}
+        {{- range $key, $value := .Values.labels }}
+        {{ $key }}: {{ $value | quote }}
+        {{- end }}
     spec:
       containers:
       - name: vote-back-{{.Release.Name}}
@@ -46,7 +49,10 @@ spec:
     metadata:
       labels:
         app: vote-front-{{.Release.Name}}
-        azure-extensions-usage-release-identifier: {{.Release.Name}}        
+        azure-extensions-usage-release-identifier: {{.Release.Name}}
+        {{- range $key, $value := .Values.labels }}
+        {{ $key }}: {{ $value | quote }}
+        {{- end }}   
     spec:
       containers:
       - name: vote-front

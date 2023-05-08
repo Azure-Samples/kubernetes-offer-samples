@@ -7,37 +7,7 @@
 			"isWizard": false,
 			"basics": {
 				"location": {
-					"visible": "[basics('createNewCluster')]",
-					"allowedValues": [
-						"eastus",
-						"eastus2",
-						"southcentralus",
-						"westus2",
-						"westus3",
-						"australiaeast",
-						"southeastasia",
-						"northeurope",
-						"uksouth",
-						"westeurope",
-						"centralus",
-						"southafricanorth",
-						"centralindia",
-						"eastasia",
-						"japaneast",
-						"koreacentral",
-						"canadacentral",
-						"francecentral",
-						"germanywestcentral",
-						"norwayeast",
-						"switzerlandnorth",
-						"northcentralus",
-						"westus",
-						"westcentralus",
-						"australiasoutheast",
-						"japanwest",
-						"southindia",
-						"ukwest"
-					]
+					"visible": "[basics('createNewCluster')]"
 				},
 				"resourceGroup": {
 					"allowExisting": true
@@ -81,7 +51,7 @@
 								"type": "Microsoft.Solutions.ArmApiControl",
 								"request": {
 									"method": "GET",
-									"path": "[concat(subscription().id, '/resourcegroups/', resourceGroup().name,  '/providers/Microsoft.ContainerService/managedClusters?api-version=2022-03-01')]"
+									"path": "[concat(subscription().id, '/resourcegroups/', resourceGroup().name,  '/providers/Microsoft.ContainerService/managedClusters?api-version=2022-11-01')]"
 								}
 							},
 							{
@@ -106,7 +76,7 @@
 								"type": "Microsoft.Solutions.ArmApiControl",
 								"request": {
 									"method": "GET",
-									"path": "[concat(subscription().id, '/providers/Microsoft.ContainerService/locations/', location(),  '/orchestrators?api-version=2019-04-01&resource-type=managedClusters')]"
+									"path": "[concat(subscription().id, '/providers/Microsoft.ContainerService/locations/', location(),  '/orchestrators?api-version=2022-11-01&resource-type=managedClusters')]"
 								}
 							},
 							{
@@ -179,8 +149,8 @@
 				]
 			},
 			{
-				"name": "applicationDetails",
-				"label": "Application Details",
+				"name": "extensionDetails",
+				"label": "Cluster Extension Details",
 				"elements": [
 					{
 						"name": "extensionResourceName",
@@ -215,7 +185,7 @@
 						"defaultValue": "Cats",
 						"constraints": {
 							"required": true,
-							"regex": "^[a-z0-9A-Z]{1,30}$",
+							"regex": "^[a-z0-9A-Z ]{1,30}$",
 							"validationMessage": "Only alphanumeric characters are allowed, and the value must be 6-30 characters long."
 						}
 					},
@@ -227,9 +197,84 @@
 						"defaultValue": "Dogs",
 						"constraints": {
 							"required": true,
-							"regex": "^[a-z0-9A-Z]{1,30}$",
+							"regex": "^[a-z0-9A-Z ]{1,30}$",
 							"validationMessage": "Only alphanumeric characters are allowed, and the value must be 6-30 characters long."
 						}
+					},
+					{
+						"name": "dynamicSettingsSection",
+						"type": "Microsoft.Common.Section",
+						"label": "(Optional) Additional Labels",
+						"elements": [
+							{
+								"name": "appParamsTextBlock",
+								"type": "Microsoft.Common.TextBlock",
+								"options": {
+									"text": "The editable grid below allows you to add additional labels to your application pods. For more detail about the UI control, please check ",
+									"link": {
+										"label": "microsoft-common-editablegrid",
+										"uri": "https://learn.microsoft.com/en-us/azure/azure-resource-manager/managed-applications/microsoft-common-editablegrid"
+									}
+								}
+							},
+							{
+								"name": "appParamsInfoBox",
+								"type": "Microsoft.Common.InfoBox",
+								"options": {
+									"icon": "Info",
+									"text": "Below label name will be transformed to labels.yourlabelname once it is passed into the ARM Template so that helm chart can be consumed as override values. Click to learn more about helm values override.",
+									"uri": "https://helm.sh/docs/chart_template_guide/values_files/"
+								}
+							},
+							{
+								"name": "dynamicSettings",
+								"type": "Microsoft.Common.EditableGrid",
+								"label": "Additional labels",
+								"toolTip": "Labels",
+								"ariaLabel": "Add additional labels to your application",
+								"constraints": {
+									"width": "Full",
+									"rows": {
+										"count": {
+											"min": 0,
+											"max": 10
+										}
+									},
+									"columns": [
+										{
+											"id": "labelName",
+											"header": "Name",
+											"element": {
+												"type": "Microsoft.Common.TextBox",
+												"placeholder": "Label Name",
+												"toolTip": "Only alphanumeric characters and hyphen are allowed, and the value must be 1-30 characters long.",
+												"constraints": {
+													"required": true,
+													"regex": "^[a-zA-Z0-9-]{1,30}$",
+													"validationMessage": "Only alphanumeric characters and hyphen are allowed, and the value must be 1-30 characters long."
+												}
+											}
+										},
+										{
+											"id": "labelValue",
+											"header": "Value",
+											"element": {
+												"type": "Microsoft.Common.TextBox",
+												"placeholder": "Label Value",
+												"toolTip": "Only alphanumeric characters, dot and hyphen are allowed, and the value must be 1-30 characters long.",
+												"constraints": {
+													"required": true,
+													"regex": "^[a-zA-Z0-9-.]{1,30}$",
+													"validationMessage": "Only alphanumeric characters, dot and hyphen are allowed, and the value must be 1-30 characters long."
+												}
+											}
+										}
+									],
+									"visible": true
+								}
+							}
+						],
+						"visible": true
 					}
 				]
 			}
@@ -239,13 +284,14 @@
 			"createNewCluster": "[basics('createNewCluster')]",
 			"clusterResourceName": "[if(basics('createNewCluster'), steps('clusterDetails').newClusterSection.newClusterResourceName, steps('clusterDetails').existingClusterSection.existingClusterResourceName)]",
 			"kubernetesVersion": "[steps('clusterDetails').newClusterSection.kubernetesVersion]",
-			"extensionResourceName": "[steps('applicationDetails').extensionResourceName]",
+			"extensionResourceName": "[steps('extensionDetails').extensionResourceName]",
 			"vmSize": "[steps('clusterDetails').newClusterSection.vmSize]",
 			"vmEnableAutoScale": "[steps('clusterDetails').newClusterSection.enableAutoScaling]",
 			"vmCount": "[steps('clusterDetails').newClusterSection.vmCount]",
-			"app-title": "[steps('applicationDetails').title]",
-			"app-value1": "[steps('applicationDetails').value1]",
-			"app-value2": "[steps('applicationDetails').value2]"
+			"app-title": "[steps('extensionDetails').title]",
+			"app-value1": "[steps('extensionDetails').value1]",
+			"app-value2": "[steps('extensionDetails').value2]",
+			"dynamicSettings": "[steps('extensionDetails').dynamicSettingsSection.dynamicSettings]"
 		}
 	}
 }

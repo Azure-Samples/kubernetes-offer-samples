@@ -12,11 +12,11 @@
 						"eastus",
 						"eastus2",
 						"southcentralus",
-						"westus2",
+						"westus2",						
 						"westus3",
 						"australiaeast",
 						"southeastasia",
-						"northeurope",
+						"northeurope",						
 						"uksouth",
 						"westeurope",
 						"centralus",
@@ -28,7 +28,7 @@
 						"canadacentral",
 						"francecentral",
 						"germanywestcentral",
-						"norwayeast",
+						"norwayeast",						
 						"switzerlandnorth",
 						"northcentralus",
 						"westus",
@@ -36,7 +36,7 @@
 						"australiasoutheast",
 						"japanwest",
 						"southindia",
-						"ukwest"
+						"ukwest"						
 					]
 				},
 				"resourceGroup": {
@@ -180,7 +180,7 @@
 			},
 			{
 				"name": "applicationDetails",
-				"label": "Application Details",
+				"label": "Cluster Application Details",
 				"elements": [
 					{
 						"name": "extensionResourceName",
@@ -230,6 +230,12 @@
 							"regex": "^[a-z0-9A-Z]{1,30}$",
 							"validationMessage": "Only alphanumeric characters are allowed, and the value must be 6-30 characters long."
 						}
+					},
+					{
+						"name": "autoUpgradeMinorVersion",
+						"type": "Microsoft.Common.CheckBox",
+						"label": "Autoupgrade Minor Version",
+						"toolTip": "Controls whether to allow auto upgrade of minor versions for the extension(application)."					
 					}
 				]
 			}
@@ -245,7 +251,8 @@
 			"vmCount": "[steps('clusterDetails').newClusterSection.vmCount]",
 			"app-title": "[steps('applicationDetails').title]",
 			"app-value1": "[steps('applicationDetails').value1]",
-			"app-value2": "[steps('applicationDetails').value2]"
+			"app-value2": "[steps('applicationDetails').value2]",
+			"autoUpgradeMinorVersion": "[steps('applicationDetails').autoUpgradeMinorVersion]"
 		}
 	}
 }
