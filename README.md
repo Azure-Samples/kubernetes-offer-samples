@@ -15,6 +15,7 @@ This repository contains samples for creating Kubernetes Applications in Azure M
 
 - k8s-offer-azure-vote: The Azure Vote application is a simple sample used throughout the Kubernetes Applications Marketplace documentation. The application consists of two pods, one running a flask web form, and the second a redis instance for temporary data storage.
 - k8s-offer-azure-vote-custom-meters: The Azure Vote custom meters application is a simple sample to demonstrate custom meters usage in a Kubernetes application. The application consists of two pods, one running a flask web form, and the second a redis instance for temporary data storage. The application submits usage data to Azure Commerce Metering API for every vote casted per hour.
+- k8s-cluster-condition-sample: This sample shows how ISV can create or select existing Kubernetes cluster with specific k8s version in Azure Marketplace. Same idea can be applied to filter other cluster properties like size, node count, etc.
 
 ## Getting started guide
 
