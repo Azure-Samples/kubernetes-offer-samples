@@ -157,14 +157,14 @@
 				]
 			},
 			{
-				"name": "extensionDetails",
-				"label": "Cluster Extension Details",
+				"name": "applicationDetails",
+				"label": "Application Details",
 				"elements": [
 					{
 						"name": "extensionResourceName",
 						"type": "Microsoft.Common.TextBox",
 						"label": "Cluster extension resource name",
-						"defaultValue": "azurevote",
+						"defaultValue": "",
 						"toolTip": "Only lowercase alphanumeric characters are allowed, and the value must be 6-30 characters long.",
 						"constraints": {
 							"required": true,
@@ -217,13 +217,13 @@
 			"createNewCluster": "[basics('createNewCluster')]",
 			"clusterResourceName": "[if(basics('createNewCluster'), steps('clusterDetails').newClusterSection.newClusterResourceName, steps('clusterDetails').existingClusterSection.existingClusterResourceName)]",
 			"kubernetesVersion": "[steps('clusterDetails').newClusterSection.kubernetesVersion]",
-			"extensionResourceName": "[steps('extensionDetails').extensionResourceName]",
+			"extensionResourceName": "[steps('applicationDetails').extensionResourceName]",
 			"vmSize": "[steps('clusterDetails').newClusterSection.vmSize]",
 			"vmEnableAutoScale": "[steps('clusterDetails').newClusterSection.enableAutoScaling]",
 			"vmCount": "[steps('clusterDetails').newClusterSection.vmCount]",
-			"app-title": "[steps('extensionDetails').title]",
-			"app-value1": "[steps('extensionDetails').value1]",
-			"app-value2": "[steps('extensionDetails').value2]"
+			"app-title": "[steps('applicationDetails').title]",
+			"app-value1": "[steps('applicationDetails').value1]",
+			"app-value2": "[steps('applicationDetails').value2]"
 		}
 	}
 }
