@@ -28,7 +28,7 @@ This folder contains samples that shows how ISV can create or select existing Ku
 }
 ```    
 
-This part ``(steps('clusterDetails').existingClusterSection.clusterLookupControl.value, (i) =>  contains(parse('[\"25\", \"26\"]'), last(take(split(i.properties.kubernetesVersion, '.'), 2))) )`` is responsible for filtering existing clusters by k8s version. In this case we are filtering clusters with k8s version 1.25.x and 1.26.x. In order to compare the minor version and ignoring the patch, we are splitting the k8s version by '.' and taking the last 2 elements of the array. Then we are checking if the last 2 elements are in the list of allowed versions. If yes, we are returning the cluster name and version as a JSON object.
+This part ``(steps('clusterDetails').existingClusterSection.clusterLookupControl.value, (i) =>  contains(parse('[\"25\", \"26\"]'), last(take(split(i.properties.kubernetesVersion, '.'), 2))) )`` is responsible for filtering existing clusters by k8s version. In this case we are filtering clusters with k8s version 1.25.x and 1.26.x. In order to compare the minor version and ignoring the patch, we are splitting the k8s version by '.', taking the first 2 elements of the array and only take the last one. Then we are checking if the element is in the list of allowed versions. If yes, we are returning the cluster name and version as a JSON object.
 
 To find out what properties you can filter on, you can use [UI definition sandbox](https://portal.azure.com/?feature.customPortal=false#view/Microsoft_Azure_CreateUIDef/SandboxBlade) and F12 developer tools to inspect the JSON object returned by the API.
 
