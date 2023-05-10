@@ -18,4 +18,5 @@ It involves the following changes in createUIDefinition.json and maintemplate.js
 
 
 
+## Note
 Please note this sample includes only a small subset of the files. The files in this sample folder contains the additional changes required on top of the base sample application [k8s-offer-azure-vote app](https://github.com/Azure-Samples/kubernetes-offer-samples/tree/main/samples/k8s-offer-azure-vote).
