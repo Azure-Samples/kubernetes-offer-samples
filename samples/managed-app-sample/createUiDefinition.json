@@ -45,58 +45,12 @@
 			}
 		},
 		"basics": [
-			{
-				"name": "createNewCluster",
-				"type": "Microsoft.Common.OptionsGroup",
-				"label": "Create new dev cluster?",
-				"defaultValue": "No",
-				"toolTip": "Create new cluster",
-				"constraints": {
-					"allowedValues": [
-						{
-							"label": "Yes",
-							"value": true
-						},
-						{
-							"label": "No",
-							"value": false
-						}
-					],
-					"required": true
-				},
-				"visible": true
-			}
 		],
 		"steps": [
 			{
 				"name": "clusterDetails",
 				"label": "Cluster Details",
-				"elements": [
-					{
-						"name": "existingClusterSection",
-						"type": "Microsoft.Common.Section",
-						"elements": [
-							{
-								"name": "clusterLookupControl",
-								"type": "Microsoft.Solutions.ArmApiControl",
-								"request": {
-									"method": "GET",
-									"path": "[concat(subscription().id, '/resourcegroups/', resourceGroup().name,  '/providers/Microsoft.ContainerService/managedClusters?api-version=2022-03-01')]"
-								}
-							},
-							{
-								"name": "existingClusterResourceName",
-								"type": "Microsoft.Common.DropDown",
-								"label": "AKS Cluster Name",
-								"toolTip": "AKS Cluster Resource Name",
-								"constraints": {
-									"allowedValues": "[map(steps('clusterDetails').existingClusterSection.clusterLookupControl.value, (item) => parse(concat('{\"label\":\"', item.name, '\",\"value\":\"', item.name, '\"}')))]",
-									"required": true
-								}
-							}
-						],
-						"visible": "[equals(basics('createNewCluster'), false)]"
-					},
+				"elements": [					
 					{
 						"name": "newClusterSection",
 						"type": "Microsoft.Common.Section",
@@ -173,8 +127,7 @@
 								},
 								"visible": true
 							}
-						],
-						"visible": "[basics('createNewCluster')]"
+						]
 					}
 				]
 			},
@@ -182,19 +135,6 @@
 				"name": "applicationDetails",
 				"label": "Application Details",
 				"elements": [
-					{
-						"name": "extensionResourceName",
-						"type": "Microsoft.Common.TextBox",
-						"label": "Cluster extension resource name",
-						"defaultValue": "",
-						"toolTip": "Only lowercase alphanumeric characters are allowed, and the value must be 6-30 characters long.",
-						"constraints": {
-							"required": true,
-							"regex": "^[a-z0-9]{6,30}$",
-							"validationMessage": "Only lowercase alphanumeric characters are allowed, and the value must be 6-30 characters long."
-						},
-						"visible": true
-					},
 					{
 						"name": "title",
 						"type": "Microsoft.Common.TextBox",
@@ -236,10 +176,8 @@
 		],
 		"outputs": {
 			"location": "[location()]",
-			"createNewCluster": "[basics('createNewCluster')]",
-			"clusterResourceName": "[if(basics('createNewCluster'), steps('clusterDetails').newClusterSection.newClusterResourceName, steps('clusterDetails').existingClusterSection.existingClusterResourceName)]",
+			"clusterResourceName": "[steps('clusterDetails').newClusterSection.newClusterResourceName]",
 			"kubernetesVersion": "[steps('clusterDetails').newClusterSection.kubernetesVersion]",
-			"extensionResourceName": "[steps('applicationDetails').extensionResourceName]",
 			"vmSize": "[steps('clusterDetails').newClusterSection.vmSize]",
 			"vmEnableAutoScale": "[steps('clusterDetails').newClusterSection.enableAutoScaling]",
 			"vmCount": "[steps('clusterDetails').newClusterSection.vmCount]",

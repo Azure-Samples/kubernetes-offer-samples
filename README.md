@@ -7,9 +7,13 @@ products:
 - azure-marketplace
 ---
 
-# Azure Marketplace Kubernetes App samples
+# Azure Marketplace Kubernetes App quick starting Guide
 
-This repository contains samples for creating Kubernetes Applications in Azure Marketplace.
+## Getting started guide
+
+- [Getting Started: Publishing a Kubernetes App on Azure Marketplace](getting-started/GettingStarted.md)
+- [Microsoft Defender: Vulnerability Pre-Scan Check](getting-started/Vulnerability-Scan.md)
+
 
 ## Samples in this repo
 
@@ -21,7 +25,3 @@ This repository contains samples for creating Kubernetes Applications in Azure M
 |[dynamic-configuration-settings-sample](samples/dynamic-configuration-settings-sample/) | This sample demonstrate UI definition and ARM template adjustment that is required to consume dynamic list from the UI, and combine with other predefined settings as one list to be passed into the helm chart through ARM template. |
 |[k8s-cluster-condition-sample](samples/k8s-cluster-condition-sample/) | This sample shows how ISV can create or select existing Kubernetes cluster with specific k8s version in Azure Marketplace. Same idea can be applied to filter other cluster properties like size, node count, etc. |
 
-## Getting started guide
-
-- [Getting Started: Publishing a Kubernetes App on Azure Marketplace](getting-started/GettingStarted.md)
-- [Microsoft Defender: Vulnerability Pre-Scan Check](getting-started/Vulnerability-Scan.md)
