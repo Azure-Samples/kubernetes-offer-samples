@@ -1,0 +1,13 @@
+applicationName: com.contoso.azurevote.existing
+publisher: "Contoso"
+description: "A test package for the marketplace CNAB structure with existing cluster only."
+version: 1.0.1 #Must be in the format of #.#.#
+helmChart: "../azure-vote"
+clusterArmTemplate: "./mainTemplate.json"
+uiDefinition: "./createUIDefinition.json"
+registryServer: "cpapr.azurecr.io"
+extensionRegistrationParameters:
+  defaultScope: "cluster"
+  namespace: "contoso"
+  billingIdentifier: "contoso.marketplace.azure-vote"
+  
