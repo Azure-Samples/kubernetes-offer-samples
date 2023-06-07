@@ -143,7 +143,7 @@ In this sample [mainTemplate](./mainTemplate.json), we have added extra componen
 
 ## UIDefinition
 
-In this sample [createUiDefinition](./createUiDefinition.json), we have remove extra components that is not applicable for the managed app offer.
+In this sample [createUiDefinition](./createUiDefinition.json), we have removed extra components that is not applicable for the managed app offer.
 
 ## Package the files
 

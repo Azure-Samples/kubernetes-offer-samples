@@ -96,7 +96,7 @@
             "defaultValue": false,
             "type": "Bool",
             "metadata": {
-                "description": "Enable private network access to the Kubernetes cluster."
+                "description": "Boolean flag to turn on and off private network access to the Kubernetes cluster."
             }
         },
         "enableHttpApplicationRouting": {
