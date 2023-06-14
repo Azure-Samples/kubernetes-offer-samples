@@ -7,7 +7,9 @@ products:
 - azure-marketplace
 ---
 
-# Azure Marketplace Kubernetes App quick starting Guide
+# Azure Marketplace Kubernetes Apps
+
+This repository contains getting started guide and samples for creating Kubernetes Applications in Azure Marketplace.
 
 ## Getting started guide
 
