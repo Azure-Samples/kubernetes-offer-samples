@@ -10,18 +10,18 @@ products:
 
 # Existing cluster only sample
 
-This folder contains samples that shows how ISV can use only existing cluster option in their create ui definition.
+This sample illustrates how ISV can allow an application to deploy only on existing clusters. The CreateUIDefinition and ARM template files in this folder show how to use only existing cluster option.
 
 ## The resulting UI Definition will show up as follows:
 
 ![Alt text](images/UI_Sample.PNG)
 
+![Alt text](images/Cluster_Details.PNG)
+
 # Explanation
 
-For setting the scope to the existing cluster, create ui definition should store id of the existing cluster in output variable as follows
-
 ## UIDefinition
-The following section creates an array of key value pairs
+For setting the scope to the existing cluster, create ui definition should store id of the existing cluster in output variable as follows
 ![Alt text](images/cluster_resource_id.PNG)
 
 ## ARM Template
