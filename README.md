@@ -7,9 +7,15 @@ products:
 - azure-marketplace
 ---
 
-# Azure Marketplace Kubernetes App samples
+# Azure Marketplace Kubernetes Apps
 
-This repository contains samples for creating Kubernetes Applications in Azure Marketplace.
+This repository contains getting started guide and samples for creating Kubernetes Applications in Azure Marketplace.
+
+## Getting started guide
+
+- [Getting Started: Publishing a Kubernetes App on Azure Marketplace](getting-started/GettingStarted.md)
+- [Microsoft Defender: Vulnerability Pre-Scan Check](getting-started/Vulnerability-Scan.md)
+
 
 ## Samples in this repo
 
@@ -20,8 +26,5 @@ This repository contains samples for creating Kubernetes Applications in Azure M
 |[select-auto-upgrade-minor-version](samples/select-auto-upgrade-minor-version) | Automatic Extension Upgrade is available for Marketplace Kubernetes applications (extensions) for minor and patch version upgrades. This sample illustrates changes required to provide auto upgrade of minor version as a choice to the end user at deployment time. When 'autoUpgradeMinorVersion' setting is enabled, the application is upgraded automatically whenever the application publisher releases a new minor or patch version for that application. |
 |[dynamic-configuration-settings-sample](samples/dynamic-configuration-settings-sample/) | This sample demonstrate UI definition and ARM template adjustment that is required to consume dynamic list from the UI, and combine with other predefined settings as one list to be passed into the helm chart through ARM template. |
 |[k8s-cluster-condition-sample](samples/k8s-cluster-condition-sample/) | This sample shows how ISV can create or select existing Kubernetes cluster with specific k8s version in Azure Marketplace. Same idea can be applied to filter other cluster properties like size, node count, etc. |
+|[managed-app-sample](samples/managed-app-sample/) | This sample shows how ISV can create a managed application that can be published to Azure Marketplace leveraging kubernetes extension type. |
 
-## Getting started guide
-
-- [Getting Started: Publishing a Kubernetes App on Azure Marketplace](getting-started/GettingStarted.md)
-- [Microsoft Defender: Vulnerability Pre-Scan Check](getting-started/Vulnerability-Scan.md)

@@ -11,32 +11,38 @@
 					"allowedValues": [
 						"eastus",
 						"eastus2",
+						"centralus",
+						"northcentralus",
+						"westcentralus",
 						"southcentralus",
+						"westus",
 						"westus2",
 						"westus3",
-						"australiaeast",
-						"southeastasia",
-						"northeurope",
-						"uksouth",
-						"westeurope",
-						"centralus",
-						"southafricanorth",
-						"centralindia",
-						"eastasia",
-						"japaneast",
-						"koreacentral",
 						"canadacentral",
+						"canadaeast",
+						"brazilsouth",
+						"northeurope",
+						"westeurope",
+						"uksouth",
+						"ukwest",
 						"francecentral",
+						"francesouth",
 						"germanywestcentral",
 						"norwayeast",
 						"switzerlandnorth",
-						"northcentralus",
-						"westus",
-						"westcentralus",
+						"swedencentral",
+						"uaenorth",
+						"southafricanorth",
+						"australiaeast",
 						"australiasoutheast",
-						"japanwest",
+						"southeastasia",
+						"eastasia",
 						"southindia",
-						"ukwest"
+						"centralindia",
+						"japaneast",
+						"japanwest",
+						"koreacentral",
+						"koreasouth"
 					]
 				},
 				"resourceGroup": {
@@ -215,7 +221,7 @@
 						"defaultValue": "Cats",
 						"constraints": {
 							"required": true,
-							"regex": "^[a-z0-9A-Z]{1,30}$",
+							"regex": "^[a-z0-9A-Z ]{1,30}$",
 							"validationMessage": "Only alphanumeric characters are allowed, and the value must be 6-30 characters long."
 						}
 					},
@@ -227,7 +233,7 @@
 						"defaultValue": "Dogs",
 						"constraints": {
 							"required": true,
-							"regex": "^[a-z0-9A-Z]{1,30}$",
+							"regex": "^[a-z0-9A-Z ]{1,30}$",
 							"validationMessage": "Only alphanumeric characters are allowed, and the value must be 6-30 characters long."
 						}
 					}
