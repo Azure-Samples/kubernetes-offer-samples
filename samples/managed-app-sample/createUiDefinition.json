@@ -112,6 +112,25 @@
 								"osPlatform": "Linux"
 							},
 							{
+								"name": "osSKU",
+								"type": "Microsoft.Common.DropDown",
+								"label": "Linux SKU",
+								"toolTip": "The SKU of Linux OS for VM.",
+								"constraints": {
+									"allowedValues": [
+										{
+											"label": "Ubuntu",
+											"value": "Ubuntu"
+										},
+										{
+											"label": "AzureLinux",
+											"value": "AzureLinux"
+										}
+									],
+									"required": true
+								}
+							},
+							{
 								"name": "enableAutoScaling",
 								"type": "Microsoft.Common.CheckBox",
 								"label": "Enable auto scaling",
@@ -185,6 +204,7 @@
 			"clusterResourceName": "[steps('clusterDetails').newClusterSection.newClusterResourceName]",
 			"kubernetesVersion": "[steps('clusterDetails').newClusterSection.kubernetesVersion]",
 			"vmSize": "[steps('clusterDetails').newClusterSection.vmSize]",
+			"osSKU": "[steps('clusterDetails').newClusterSection.osSKU]",
 			"vmEnableAutoScale": "[steps('clusterDetails').newClusterSection.enableAutoScaling]",
 			"vmCount": "[steps('clusterDetails').newClusterSection.vmCount]",
 			"app-title": "[steps('applicationDetails').title]",

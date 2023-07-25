@@ -75,7 +75,7 @@
         },
         "kubernetesVersion": {
             "type": "String",
-            "defaultValue": "1.24.0",
+            "defaultValue": "1.26.0",
             "metadata": {
                 "description": "The version of Kubernetes."
             }
@@ -125,6 +125,17 @@
             "metadata": {
                 "description": "Boolean flag to turn on and off secret store CSI driver."
             }
+        },
+        "osSKU": {
+            "type": "string",
+            "defaultValue": "azurelinux",
+            "allowedValues": [
+                "AzureLinux",
+                "Ubuntu"
+            ],
+            "metadata": {
+                "description": "The Linux SKU to use."
+            }
         }
     },
     "variables": {
@@ -164,6 +175,7 @@
                         "maxCount": 10,
                         "vmSize": "[parameters('vmSize')]",
                         "osType": "Linux",
+                        "osSKU": "[parameters('osSKU')]",
                         "storageProfile": "ManagedDisks",
                         "type": "VirtualMachineScaleSets",
                         "mode": "System",
