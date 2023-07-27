@@ -17,7 +17,7 @@ global:
       resourceId: "DONOTMODIFY" # application's Azure Resource ID, Azure populates this value at deployment time
     images:
       frontend:
-        digest: sha256:fed588cc86c00250bd25219e727f31927f377f7b3863ae130e98e936bea92d02
+        digest: sha256:c6e5a59d7789155b291f473c48520a8c83438488d3531e3fbf8f854f0be79d99
         image: azure-vote-custom-front
         registry: azurek8ssamples.azurecr.io/marketplaceimages
       backend:
