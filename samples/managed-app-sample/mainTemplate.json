@@ -122,7 +122,7 @@
         },
         "osSKU": {
             "type": "string",
-            "defaultValue": "azurelinux",
+            "defaultValue": "AzureLinux",
             "allowedValues": [
                 "AzureLinux",
                 "Ubuntu"
