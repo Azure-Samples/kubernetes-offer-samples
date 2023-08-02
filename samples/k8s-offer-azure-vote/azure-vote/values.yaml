@@ -6,7 +6,7 @@ global:
   azure:
     images:
       frontend:
-        digest: sha256:8632fe16f612928b51c03f969baca1ac81409c014ff8d31f52a5dd9ce73b1cac
+        digest: sha256:2b45c9e29da1805a8b22dfd192e188220e9c2fbeda45afd6a88c9f27df3df629
         image: azure-vote-front
         registry: azurek8ssamples.azurecr.io/marketplaceimages
       backend:
