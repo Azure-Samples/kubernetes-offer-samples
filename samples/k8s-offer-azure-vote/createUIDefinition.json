@@ -158,6 +158,25 @@
 								"osPlatform": "Linux"
 							},
 							{
+								"name": "osSKU",
+								"type": "Microsoft.Common.DropDown",
+								"label": "OS SKU",
+								"toolTip": "The SKU of Linux OS for VM.",
+								"constraints": {
+									"allowedValues": [
+										{
+											"label": "Ubuntu",
+											"value": "Ubuntu"
+										},
+										{
+											"label": "AzureLinux",
+											"value": "AzureLinux"
+										}
+									],
+									"required": true
+								}
+							},
+							{
 								"name": "enableAutoScaling",
 								"type": "Microsoft.Common.CheckBox",
 								"label": "Enable auto scaling",
@@ -221,7 +240,7 @@
 						"defaultValue": "Cats",
 						"constraints": {
 							"required": true,
-							"regex": "^[a-z0-9A-Z]{1,30}$",
+							"regex": "^[a-z0-9A-Z ]{1,30}$",
 							"validationMessage": "Only alphanumeric characters are allowed, and the value must be 6-30 characters long."
 						}
 					},
@@ -233,7 +252,7 @@
 						"defaultValue": "Dogs",
 						"constraints": {
 							"required": true,
-							"regex": "^[a-z0-9A-Z]{1,30}$",
+							"regex": "^[a-z0-9A-Z ]{1,30}$",
 							"validationMessage": "Only alphanumeric characters are allowed, and the value must be 6-30 characters long."
 						}
 					}
@@ -247,6 +266,7 @@
 			"kubernetesVersion": "[steps('clusterDetails').newClusterSection.kubernetesVersion]",
 			"extensionResourceName": "[steps('applicationDetails').extensionResourceName]",
 			"vmSize": "[steps('clusterDetails').newClusterSection.vmSize]",
+			"osSKU": "[steps('clusterDetails').newClusterSection.osSKU]",
 			"vmEnableAutoScale": "[steps('clusterDetails').newClusterSection.enableAutoScaling]",
 			"vmCount": "[steps('clusterDetails').newClusterSection.vmCount]",
 			"app-title": "[steps('applicationDetails').title]",

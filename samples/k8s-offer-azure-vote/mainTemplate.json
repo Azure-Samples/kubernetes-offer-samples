@@ -75,7 +75,7 @@
         },
         "kubernetesVersion": {
             "type": "String",
-            "defaultValue": "1.24.0",
+            "defaultValue": "1.26.3",
             "metadata": {
                 "description": "The version of Kubernetes."
             }
@@ -125,6 +125,17 @@
             "metadata": {
                 "description": "Boolean flag to turn on and off secret store CSI driver."
             }
+        },
+        "osSKU": {
+            "type": "string",
+            "defaultValue": "AzureLinux",
+            "allowedValues": [
+                "AzureLinux",
+                "Ubuntu"
+            ],
+            "metadata": {
+                "description": "The Linux SKU to use."
+            }
         }
     },
     "variables": {
@@ -137,7 +148,7 @@
     "resources": [
         {
             "type": "Microsoft.ContainerService/managedClusters",
-            "condition" : "[parameters('createNewCluster')]",
+            "condition": "[parameters('createNewCluster')]",
             "apiVersion": "2022-11-01",
             "name": "[parameters('clusterResourceName')]",
             "location": "[parameters('location')]",
@@ -164,6 +175,7 @@
                         "maxCount": 10,
                         "vmSize": "[parameters('vmSize')]",
                         "osType": "Linux",
+                        "osSKU": "[parameters('osSKU')]",
                         "storageProfile": "ManagedDisks",
                         "type": "VirtualMachineScaleSets",
                         "mode": "System",
@@ -192,11 +204,11 @@
                     }
                 }
             }
-        },  
+        },
         {
             "type": "Microsoft.KubernetesConfiguration/extensions",
             "apiVersion": "2022-11-01",
-            "name": "[parameters('extensionResourceName')]",          
+            "name": "[parameters('extensionResourceName')]",
             "properties": {
                 "extensionType": "[variables('clusterExtensionTypeName')]",
                 "autoUpgradeMinorVersion": true,

@@ -11,32 +11,38 @@
 					"allowedValues": [
 						"eastus",
 						"eastus2",
-						"southcentralus",
-						"westus2",						
-						"westus3",
-						"australiaeast",
-						"southeastasia",
-						"northeurope",						
-						"uksouth",
-						"westeurope",
 						"centralus",
-						"southafricanorth",
-						"centralindia",
-						"eastasia",
-						"japaneast",
-						"koreacentral",
-						"canadacentral",
-						"francecentral",
-						"germanywestcentral",
-						"norwayeast",						
-						"switzerlandnorth",
 						"northcentralus",
-						"westus",
 						"westcentralus",
+						"southcentralus",
+						"westus",
+						"westus2",
+						"westus3",
+						"canadacentral",
+						"canadaeast",
+						"brazilsouth",
+						"northeurope",
+						"westeurope",
+						"uksouth",
+						"ukwest",
+						"francecentral",
+						"francesouth",
+						"germanywestcentral",
+						"norwayeast",
+						"switzerlandnorth",
+						"swedencentral",
+						"uaenorth",
+						"southafricanorth",
+						"australiaeast",
 						"australiasoutheast",
-						"japanwest",
+						"southeastasia",
+						"eastasia",
 						"southindia",
-						"ukwest"						
+						"centralindia",
+						"japaneast",
+						"japanwest",
+						"koreacentral",
+						"koreasouth"
 					]
 				},
 				"resourceGroup": {
@@ -152,6 +158,25 @@
 								"osPlatform": "Linux"
 							},
 							{
+								"name": "osSKU",
+								"type": "Microsoft.Common.DropDown",
+								"label": "Linux SKU",
+								"toolTip": "The SKU of Linux OS for VM.",
+								"constraints": {
+									"allowedValues": [
+										{
+											"label": "Ubuntu",
+											"value": "Ubuntu"
+										},
+										{
+											"label": "AzureLinux",
+											"value": "AzureLinux"
+										}
+									],
+									"required": true
+								}
+							},
+							{
 								"name": "enableAutoScaling",
 								"type": "Microsoft.Common.CheckBox",
 								"label": "Enable auto scaling",
@@ -180,7 +205,7 @@
 			},
 			{
 				"name": "applicationDetails",
-				"label": "Cluster Application Details",
+				"label": "Application Details",
 				"elements": [
 					{
 						"name": "extensionResourceName",
@@ -215,7 +240,7 @@
 						"defaultValue": "Cats",
 						"constraints": {
 							"required": true,
-							"regex": "^[a-z0-9A-Z]{1,30}$",
+							"regex": "^[a-z0-9A-Z ]{1,30}$",
 							"validationMessage": "Only alphanumeric characters are allowed, and the value must be 6-30 characters long."
 						}
 					},
@@ -227,7 +252,7 @@
 						"defaultValue": "Dogs",
 						"constraints": {
 							"required": true,
-							"regex": "^[a-z0-9A-Z]{1,30}$",
+							"regex": "^[a-z0-9A-Z ]{1,30}$",
 							"validationMessage": "Only alphanumeric characters are allowed, and the value must be 6-30 characters long."
 						}
 					},
@@ -247,6 +272,7 @@
 			"kubernetesVersion": "[steps('clusterDetails').newClusterSection.kubernetesVersion]",
 			"extensionResourceName": "[steps('applicationDetails').extensionResourceName]",
 			"vmSize": "[steps('clusterDetails').newClusterSection.vmSize]",
+			"osSKU": "[steps('clusterDetails').newClusterSection.osSKU]",
 			"vmEnableAutoScale": "[steps('clusterDetails').newClusterSection.enableAutoScaling]",
 			"vmCount": "[steps('clusterDetails').newClusterSection.vmCount]",
 			"app-title": "[steps('applicationDetails').title]",
