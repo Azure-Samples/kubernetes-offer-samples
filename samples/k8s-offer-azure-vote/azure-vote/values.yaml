@@ -22,3 +22,13 @@ serviceType: LoadBalancer
 
 # additional labels
 labels: {}
+
+# CPU request and limit array
+cpuLimit:
+  - 0.25
+  - 0.5
+
+# Memory request and limit array
+memoryLimit:
+  - 128Mi
+  - 256Mi
