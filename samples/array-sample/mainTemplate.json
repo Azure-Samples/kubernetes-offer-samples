@@ -37,7 +37,7 @@
             "type": "String"
         },
         "app-cpuLimit": {
-            "type": "String"
+            "type": "array"
         },
         "app-memoryLimit0": {
             "type": "String"
@@ -152,7 +152,28 @@
         "plan-publisher": "DONOTMODIFY",
         "plan-offerID": "DONOTMODIFY",
         "releaseTrain": "DONOTMODIFY",
-        "clusterExtensionTypeName": "DONOTMODIFY"
+        "clusterExtensionTypeName": "DONOTMODIFY",
+        "copy": [
+            {
+                "count": "[length(parameters('app-cpuLimit'))]",
+                "input": "[createObject(concat('cpuLimit[', copyIndex('cpuLimit_array'), ']'), union(createObject('value', ''), parameters('app-cpuLimit')[copyIndex('cpuLimit_array')]).cpuValue)]",
+                "name": "cpuLimit_array"
+            }
+        ],
+        "cpuLimit_string": "[concat(string(variables('cpuLimit_array')), '_END_')]",
+        "cpuLimit_trim1": "[replace(variables('cpuLimit_string'), '[{\"', '{\"')]",
+        "cpuLimit_trim2": "[replace(variables('cpuLimit_trim1'), '}]_END_', '}')]",
+        "cpuLimit_trim3": "[replace(variables('cpuLimit_trim2'), '},{\"', ',\"')]",
+        "cpuLimit_json": "[json(variables('cpuLimit_trim3'))]",
+
+        "otherConfigurationSettings": {
+            "title": "[parameters('app-title')]",
+            "value1": "[parameters('app-value1')]",
+            "value2": "[parameters('app-value2')]",
+            "memoryLimit[0]": "[parameters('app-memoryLimit0')]",
+            "memoryLimit[1]": "[parameters('app-memoryLimit1')]"
+        },
+        "configurationSettings": "[union(variables('otherConfigurationSettings'), variables('cpuLimit_json'))]"
     },
     "resources": [
         {
@@ -222,14 +243,7 @@
                 "extensionType": "[variables('clusterExtensionTypeName')]",
                 "autoUpgradeMinorVersion": true,
                 "releaseTrain": "[variables('releaseTrain')]",
-                "configurationSettings": {
-                    "title": "[parameters('app-title')]",
-                    "value1": "[parameters('app-value1')]",
-                    "value2": "[parameters('app-value2')]",
-                    "cpuLimit": "[parameters('app-cpuLimit')]",
-                    "memoryLimit[0]": "[parameters('app-memoryLimit0')]",
-                    "memoryLimit[1]": "[parameters('app-memoryLimit1')]"
-                },
+                "configurationSettings": "[variables('configurationSettings')]",
                 "configurationProtectedSettings": {
 
                 }

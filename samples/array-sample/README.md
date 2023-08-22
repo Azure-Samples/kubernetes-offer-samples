@@ -17,40 +17,79 @@ In helm, there are 2 different ways to override array inside values.yaml
 - --set memoryLimit[0]=512Mi --set memoryLimit[1]=0.75Gi
 
 
-Both ways can be used in Kubernetes Marketplace Offer. However, the first way is preferred if you want to provide more flexibility to number of elements.
+Only the second ways can be used in Kubernetes Marketplace Offer. In this sample, we will show 2 different way to achieve generating the key value pairs that can be used to override array inside values.yaml
 
 ## ARM Template
 
 The following code snipnet shows how the values are passed as configuration settings:
 
+
+
+## Editable grids
+
+The following code snippet shows we want more flexiblity on the input, so we can use editable grid to generate the key value pairs that can be used to override array inside values.yaml
+
+### UIDefinition.json
 ```json
-"configurationSettings": {
-    "title": "[parameters('app-title')]",
-    "value1": "[parameters('app-value1')]",
-    "value2": "[parameters('app-value2')]",
-    "cpuLimit": "[parameters('app-cpuLimit')]",
-    "memoryLimit[0]": "[parameters('app-memoryLimit0')]",
-    "memoryLimit[1]": "[parameters('app-memoryLimit1')]"
-},
+					{
+						"name": "cpuLimit",
+						"type": "Microsoft.Common.EditableGrid",
+						"label": "CPU Limit",
+						"ariaLabel": "Enter CPU Request and Limits in editable grid format",
+						"constraints": {
+							"width": "Full",
+							"rows": {
+								"count": {
+									"min": 2,
+									"max": 2
+								}
+							},
+							"columns": [
+								{
+									"id": "cpuValue",
+									"header": "CPU Value, first row is request, second row is limit",
+									"width": "500px",
+									"element": {
+										"type": "Microsoft.Common.TextBox",
+										"defaultValue": "0.25",
+										"toolTip": "This will replace the cpuLimit's array index values inside your values.yaml",
+										"constraints": {
+											"required": true,
+											"regex": "^[0-9]+.[0-9]+$",
+											"validationMessage": "Must be in the format for #.#"
+										}
+									}
+								}
+							]
+						}
+					},
 ```
 
-## UI Definition
-
-The following code snippet shows how the inputs can be defined in the UI definition:
+### ARM Template
 
 ```json
-{
-    "name": "cpuLimit",
-    "type": "Microsoft.Common.TextBox",
-    "label": "CPU Limit",
-    "toolTip": "This will replace the cpuLimit's value inside your values.yaml",
-    "defaultValue": "{0.5, 1.0}",
-    "constraints": {
-        "required": true,
-        "regex": "^{[0-9.]+, [0-9.]+}$",
-        "validationMessage": "Must be in the format for {#.#, #.#}"
+"copy": [
+    {
+        "count": "[length(parameters('app-cpuLimit'))]",
+        "input": "[createObject(concat('cpuLimit[', copyIndex('cpuLimit_array'), ']'), union(createObject('value', ''), parameters('app-cpuLimit')[copyIndex('cpuLimit_array')]).cpuValue)]",
+        "name": "cpuLimit_array"
     }
-},
+],
+"cpuLimit_string": "[concat(string(variables('cpuLimit_array')), '_END_')]",
+"cpuLimit_trim1": "[replace(variables('cpuLimit_string'), '[{\"', '{\"')]",
+"cpuLimit_trim2": "[replace(variables('cpuLimit_trim1'), '}]_END_', '}')]",
+"cpuLimit_trim3": "[replace(variables('cpuLimit_trim2'), '},{\"', ',\"')]",
+"cpuLimit_json": "[json(variables('cpuLimit_trim3'))]",
+```
+
+For more information about how this works, you can reference [dynamic-configuration-settings-sample](../dynamic-configuration-settings-sample/) sample.
+
+## Textboxes
+
+When we have static number of items you would like to include in the array, you can use textboxes to generate the key value pairs that can be used to override array inside values.yaml
+
+### UI Definition
+```json
 {
     "name": "memoryLimit0",
     "type": "Microsoft.Common.TextBox",
@@ -75,6 +114,19 @@ The following code snippet shows how the inputs can be defined in the UI definit
         "validationMessage": "Must be in the format for #.#[EPTGMK]i"
     }
 }
+```
+
+### ARM Template
+
+```json
+"otherConfigurationSettings": {
+    "title": "[parameters('app-title')]",
+    "value1": "[parameters('app-value1')]",
+    "value2": "[parameters('app-value2')]",
+    "memoryLimit[0]": "[parameters('app-memoryLimit0')]",
+    "memoryLimit[1]": "[parameters('app-memoryLimit1')]"
+},
+"configurationSettings": "[union(variables('otherConfigurationSettings'), variables('cpuLimit_json'))]"
 ```
 
 ## Helm chart
