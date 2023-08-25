@@ -28,5 +28,5 @@ This repository contains getting started guide and samples for creating Kubernet
 |[dynamic-configuration-settings-sample](samples/dynamic-configuration-settings-sample/) | This sample demonstrate UI definition and ARM template adjustment that is required to consume dynamic list from the UI, and combine with other predefined settings as one list to be passed into the helm chart through ARM template. |
 |[k8s-cluster-condition-sample](samples/k8s-cluster-condition-sample/) | This sample shows how ISV can create or select existing Kubernetes cluster with specific k8s version in Azure Marketplace. Same idea can be applied to filter other cluster properties like size, node count, etc. |
 |[managed-app-sample](samples/managed-app-sample/) | This sample shows how ISV can create a managed application that can be published to Azure Marketplace leveraging kubernetes extension type. |
-|[array-sample](samples/array-sample/) | This sample provides an example on how to pass array into helm chart through ARM template. |
+|[datatype-sample](samples/datatype-sample/) | This sample provides two different ways to override array objects inside helm chart for Kubernetes Marketplace Offer. |
 

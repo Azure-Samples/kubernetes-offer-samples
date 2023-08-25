@@ -8,20 +8,15 @@ products:
 - azure-marketplace
 ---
 
-# Array input sample for Kubernetes Marketplace Offer
+# Different data input sample for Kubernetes Marketplace Offer
 
-This sample demonstrates how to override array inside values.yaml for Kubernetes Marketplace Offer
+This sample demonstrates how to override array objects inside helm chart for Kubernetes Marketplace Offer
 
 In helm, there are 2 different ways to override array inside values.yaml
 - --set cpuLimit='{1,1.5}'
 - --set memoryLimit[0]=512Mi --set memoryLimit[1]=0.75Gi
 
-
-Only the second ways can be used in Kubernetes Marketplace Offer. In this sample, we will show 2 different way to achieve generating the key value pairs that can be used to override array inside values.yaml
-
-## ARM Template
-
-The following code snipnet shows how the values are passed as configuration settings:
+Only the second way can be used in Kubernetes Marketplace Offer. In this sample, we will show 2 different way to achieve generating the key value pairs that can be used to override array inside values.yaml
 
 
 
