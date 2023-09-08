@@ -1,0 +1,10 @@
+applicationName: com.contoso.azurevote.array
+publisher: "Contoso"
+description: "A test package for the marketplace CNAB structure with existing or new cluster that deploys Azure Vote App with array parameters"
+version: 1.0.2 #Must be in the format of #.#.#
+helmChart: "../k8s-offer-azure-vote/azure-vote"
+clusterArmTemplate: "./mainTemplate.json"
+uiDefinition: "./createUIDefinition.json"
+registryServer: "youracr.azurecr.io"
+extensionRegistrationParameters:
+  defaultScope: "namespace" # cluster or namespace 

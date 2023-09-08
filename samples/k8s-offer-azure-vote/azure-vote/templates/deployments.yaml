@@ -24,11 +24,11 @@ spec:
           name: vote-back
         resources:
           requests:
-            cpu: 250m
-            memory: 128Mi
+            cpu: {{ index .Values.cpuLimit 0}}
+            memory: {{ index .Values.memoryLimit 0}}
           limits:
-            cpu: 500m
-            memory: 256Mi
+            cpu: {{ index .Values.cpuLimit 1}}
+            memory: {{ index .Values.memoryLimit 1}}
 
 ---
 apiVersion: apps/v1
@@ -62,11 +62,11 @@ spec:
         - containerPort: 80
         resources:
           requests:
-            cpu: 250m
-            memory: 128Mi
+            cpu: {{ index .Values.cpuLimit 0}}
+            memory: {{ index .Values.memoryLimit 0}}
           limits:
-            cpu: 500m
-            memory: 256Mi
+            cpu: {{ index .Values.cpuLimit 1}}
+            memory: {{ index .Values.memoryLimit 1}}
         env:
         - name: REDIS
           value: vote-back-{{.Release.Name}}
