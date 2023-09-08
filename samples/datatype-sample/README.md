@@ -26,38 +26,38 @@ The following code snippet shows we want more flexiblity on the input, so we can
 
 ### UIDefinition.json
 ```json
-					{
-						"name": "cpuLimit",
-						"type": "Microsoft.Common.EditableGrid",
-						"label": "CPU Limit",
-						"ariaLabel": "Enter CPU Request and Limits in editable grid format",
-						"constraints": {
-							"width": "Full",
-							"rows": {
-								"count": {
-									"min": 2,
-									"max": 2
-								}
-							},
-							"columns": [
-								{
-									"id": "cpuValue",
-									"header": "CPU Value, first row is request, second row is limit",
-									"width": "500px",
-									"element": {
-										"type": "Microsoft.Common.TextBox",
-										"defaultValue": "0.25",
-										"toolTip": "This will replace the cpuLimit's array index values inside your values.yaml",
-										"constraints": {
-											"required": true,
-											"regex": "^[0-9]+.[0-9]+$",
-											"validationMessage": "Must be in the format for #.#"
-										}
-									}
-								}
-							]
-						}
-					},
+{
+    "name": "cpuLimit",
+    "type": "Microsoft.Common.EditableGrid",
+    "label": "CPU Limit",
+    "ariaLabel": "Enter CPU Request and Limits in editable grid format",
+    "constraints": {
+        "width": "Full",
+        "rows": {
+            "count": {
+                "min": 2,
+                "max": 2
+            }
+        },
+        "columns": [
+            {
+                "id": "cpuValue",
+                "header": "CPU Value, first row is request, second row is limit",
+                "width": "500px",
+                "element": {
+                    "type": "Microsoft.Common.TextBox",
+                    "defaultValue": "0.25",
+                    "toolTip": "This will replace the cpuLimit's array index values inside your values.yaml",
+                    "constraints": {
+                        "required": true,
+                        "regex": "^[0-9]+.[0-9]+$",
+                        "validationMessage": "Must be in the format for #.#"
+                    }
+                }
+            }
+        ]
+    }
+},
 ```
 
 ### ARM Template
