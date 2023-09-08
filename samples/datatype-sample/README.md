@@ -18,7 +18,7 @@ In helm, there are 2 different ways to override array inside values.yaml
 
 Only the second way can be used in Kubernetes Marketplace Offer. In this sample, we will show 2 different way to achieve generating the key value pairs that can be used to override array inside values.yaml
 
-
+This sample also shows how to override values with special characters like '.' and inside deeper nested objects.
 
 ## Editable grids
 
@@ -66,7 +66,7 @@ The following code snippet shows we want more flexiblity on the input, so we can
 "copy": [
     {
         "count": "[length(parameters('app-cpuLimit'))]",
-        "input": "[createObject(concat('cpuLimit[', copyIndex('cpuLimit_array'), ']'), union(createObject('value', ''), parameters('app-cpuLimit')[copyIndex('cpuLimit_array')]).cpuValue)]",
+        "input": "[createObject(concat('resourcesLimit.cpuLimit[', copyIndex('cpuLimit_array'), ']'), union(createObject('value', ''), parameters('app-cpuLimit')[copyIndex('cpuLimit_array')]).cpuValue)]",
         "name": "cpuLimit_array"
     }
 ],
@@ -76,6 +76,13 @@ The following code snippet shows we want more flexiblity on the input, so we can
 "cpuLimit_trim3": "[replace(variables('cpuLimit_trim2'), '},{\"', ',\"')]",
 "cpuLimit_json": "[json(variables('cpuLimit_trim3'))]",
 ```
+With the above conversion, the following key value pairs will be generated:
+```json
+resourcesLimit.cpuLimit[0] = {"cpuValue":"0.25"}
+resourcesLimit.cpuLimit[1] = {"cpuValue":"0.5"}
+```
+Which can then be passed into the configuration settings in the ARM template:
+
 
 For more information about how this works, you can reference [dynamic-configuration-settings-sample](../dynamic-configuration-settings-sample/) sample.
 
@@ -113,13 +120,14 @@ When we have static number of items you would like to include in the array, you 
 
 ### ARM Template
 
+In this sample, since memory limit is in the format of memory.limit, we need to escape the . with \\. so that it is still a valid JSON object while helm chart would still treat it is as 1 key.
 ```json
 "otherConfigurationSettings": {
     "title": "[parameters('app-title')]",
     "value1": "[parameters('app-value1')]",
     "value2": "[parameters('app-value2')]",
-    "memoryLimit[0]": "[parameters('app-memoryLimit0')]",
-    "memoryLimit[1]": "[parameters('app-memoryLimit1')]"
+    "resourcesLimit.memory\\.Limit[0]": "[parameters('app-memoryLimit0')]",
+    "resourcesLimit.memory\\.Limit[1]": "[parameters('app-memoryLimit1')]"
 },
 "configurationSettings": "[union(variables('otherConfigurationSettings'), variables('cpuLimit_json'))]"
 ```
@@ -131,26 +139,29 @@ To have azure-vote to consume the changes made in this sample, the following cod
 deployments.yaml
 ```yaml
 requests:
-cpu: {{ index .Values.cpuLimit 0}}
-memory: {{ index .Values.memoryLimit 0}}
+cpu: {{ index .Values.resourcesLimit.cpuLimit 0}}
+memory: {{ index .Values "resourcesLimit" "memory.Limit" 0}}
 limits:
-cpu: {{ index .Values.cpuLimit 1}}
-memory: {{ index .Values.memoryLimit 1}}
+cpu: {{ index .Values.resourcesLimit.cpuLimit 1}}
+memory: {{ index .Values "resourcesLimit" "memory.Limit" 1}}
 ```
 
 values.yaml
 ```yaml
-# CPU request and limit array
-cpuLimit:
-  - 0.25
-  - 0.5
-
-# Memory request and limit array
-memoryLimit:
-  - 128Mi
-  - 256Mi
+resourcesLimit:
+  # CPU request and limit array
+  cpuLimit:
+    - 0.25
+    - 0.5
+  # Memory request and limit array
+  memory.Limit:
+    - 128Mi
+    - 256Mi
 ```
 
+## Deployment result in Azure Portal Kubernetes Extensions page
+
+![Deployment result in Azure Portal Kubernetes Extensions page](images/ResultConfigurationSettings.png)
 
 ## Note
 This sample includes only a small subset of the files. The files in this sample folder contains the additional changes required on top of the base sample application '[k8s-offer-azure-vote](../k8s-offer-azure-vote/)'.
