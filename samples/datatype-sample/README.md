@@ -48,7 +48,7 @@ In normal array, we can use index to access the value in the array. However, sin
 
 ## How helm chart values are passed in through ARM template
 
-In helm, there are 2 different ways to override array inside values.yaml
+In helm, there are 2 different ways to override array inside values.yaml. Only the second way specified below can be used in Kubernetes Marketplace Offer.
 - --set resourcesLimit.cpuLimit='{1,1.5}'
 - --set resourcesLimit.cpuLimit[0]=1 --set resourcesLimit.cpuLimit[1]=1.5
 
@@ -103,7 +103,7 @@ From ARM template, we need to escape the \ with \\\\ so that it is still a valid
 
 ## Editable grids
 
-When we want more flexiblity on the inputs, we can use editable grid to generate the key value pairs.
+When we want more flexiblity on the inputs, we can use editable grid to generate the key value pairs dynamically.
 
 ### UIDefinition.json
 ```json
