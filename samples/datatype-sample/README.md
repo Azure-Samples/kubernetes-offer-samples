@@ -88,7 +88,13 @@ When we have static number of items you would like to include in the array, you 
 
 ### ARM Template
 
-Since memory limit is in the format of memory.limit, we need to escape the . with \\. so that it is still a valid JSON object while helm chart would still treat it is as 1 key.
+Since memory limit is in the format of memory.limit, helm would need the following to overwrite the values in values.yaml
+
+``` 
+--set resourcesLimit.memory\.limit[0]=1 --set resourcesLimit.memory\.limit[1]=1.5
+```
+
+From ARM template, we need to escape the \ with \\\\ so that it is still a valid JSON object. So the final key value pairs would be:
 ```
 "resourcesLimit.memory\\.Limit[0]": "[parameters('app-memoryLimit0')]",
 "resourcesLimit.memory\\.Limit[1]": "[parameters('app-memoryLimit1')]"
