@@ -49,8 +49,8 @@ In normal array, we can use index to access the value in the array. However, sin
 ## How helm chart values are passed in through ARM template
 
 In helm, there are 2 different ways to override array inside values.yaml. Only the second way specified below can be used in Kubernetes Marketplace Offer.
-- --set resourcesLimit.cpuLimit='{1,1.5}'
-- --set resourcesLimit.cpuLimit[0]=1 --set resourcesLimit.cpuLimit[1]=1.5
+1. --set resourcesLimit.cpuLimit='{1,1.5}'
+2. --set resourcesLimit.cpuLimit[0]=1 --set resourcesLimit.cpuLimit[1]=1.5
 
 Only the second way can be used in Kubernetes Marketplace Offer. In this sample, we will show 2 different ways (editable grids, text boxes) to generate the key value pairs that can be used to override array inside values.yaml.
 
