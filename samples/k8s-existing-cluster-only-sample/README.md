@@ -16,8 +16,6 @@ This sample illustrates how ISV can allow an application to deploy only on exist
 
 ![Alt text](images/UI_Sample.PNG)
 
-![Alt text](images/Cluster_Details.PNG)
-
 # Explanation
 
 ## UIDefinition

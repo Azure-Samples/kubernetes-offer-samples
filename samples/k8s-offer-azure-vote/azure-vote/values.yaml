@@ -6,11 +6,11 @@ global:
   azure:
     images:
       frontend:
-        digest: sha256:2b45c9e29da1805a8b22dfd192e188220e9c2fbeda45afd6a88c9f27df3df629
+        digest: sha256:831af6ddcda2b082273e267dd6507a8e3d231fb40bb881774de3fa812d516fce
         image: azure-vote-front
         registry: azurek8ssamples.azurecr.io/marketplaceimages
       backend:
-        digest: sha256:e600a259cb3ef2c6ceace477022d6159c3e72763c694d54c0263365101de3266
+        digest: sha256:ff84de0300ff103207d78e777fb007c397974a000ef861c91664bfbbefa56b83
         image: azure-vote-back
         registry: azurek8ssamples.azurecr.io/marketplaceimages
 # how many frontends do we want?
