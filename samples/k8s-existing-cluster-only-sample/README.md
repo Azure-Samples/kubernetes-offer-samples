@@ -11,6 +11,7 @@ products:
 # Existing cluster only sample
 
 This sample illustrates how ISV can allow an application to deploy only on existing clusters. The CreateUIDefinition and ARM template files in this folder show how to use only existing cluster option.
+This sample also demostrate using cluster resource Id instead of resource name for setting the scope of the extension resource. 
 
 ## The resulting UI Definition will show up as follows:
 
