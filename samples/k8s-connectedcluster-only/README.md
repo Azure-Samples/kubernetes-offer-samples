@@ -12,23 +12,30 @@ products:
 
 This folder contains samples that show how an ISV can prepare a Kubernetes application that can be installed only on Azure Arc-enabled Kubernetes Clusters.
 
+Note:
+  - Throughout this sample, the terms  "connectedClusters" and "connected clusters" denote Azure Arc-enabled Kubernetes clusters.
+
 ## Artifact changes
 
 The following changes are required to enable support for connected clusters.
 
 ### Manifest
 
-Add 'supportedClusterTypes' under extensionRegistrationParameters
+Add 'supportedClusterTypes' under extensionRegistrationParameters.
+
+Sample below indicates all ditributions of connectedCluster type are supported with no restriction on any versions.
+
+
 
 ![Alt text](images/Manifest_changes.PNG)
 
-Following is the guidance on the supportedClusterTypes
+Following is the guidance on the supportedClusterTypes:
 
 | Property      | Description |
 | -----------   | ----------- |
-| supportedClusterTypes       | Contains an object for each top-level cluster-type. Allowed types are – “managedClusters”, “connectedClusters”. "managedClusters" refers to Azure Kubernetes Service (AKS) clusters. "connectedClusters" refers to Azure Arc-enabled Kubernetes clusters. For each of these cluster types, specify distributions and unsupported Kubernetes versions for these distributions. If supportedClusterTypes is not provided, all distributions of ‘managedClusters’ will be supported by default. If supportedClusterTypes is provided, and a given top level cluster type is not provided, then all distributions and Kubernetes versions for that cluster type will be treated as unsupported. |
+| supportedClusterTypes       | Contains an object for each top-level cluster-type. Allowed types are – “managedClusters”, “connectedClusters”. "managedClusters" denotes Azure Kubernetes Service (AKS) clusters. "connectedClusters" denotes Azure Arc-enabled Kubernetes clusters. For each of these cluster types, specify distributions and unsupported Kubernetes versions for these distributions. If supportedClusterTypes is not provided, all distributions of ‘managedClusters’ will be supported by default. If supportedClusterTypes is provided, and a given top level cluster type is not provided, then all distributions and Kubernetes versions for that cluster type will be treated as unsupported. |
 | distribution   | An array of distributions  corresponding to the cluster type. Provide name(s) of specific distributions. Set the value to [“All”]  to indicate all distributions are supported. |
-| distributionSupported  | A boolean value representing whether the specified distribution(s) are supported. If false, providing UnsupportedVersions will cause an error. |
+| distributionSupported  | A boolean value representing whether the specified distribution(s) are supported. If false, providing a value for UnsupportedVersions will cause an error. |
 | unsupportedVersions  | A list of versions for the specified distribution(s) which are unsupported. Supported operators: |
 
                         •	"=" Given version is not supported. E.g.: “=1.2.12”
@@ -39,7 +46,37 @@ Following is the guidance on the supportedClusterTypes
 
                         •	"..." All versions in range are unsupported. E.g.: ” 1.1.2...1.1.15”  (includes right-side value and excludes left-side value)
 
+#### More samples of supportedClusterTypes:
 
+Only the "AKS" ditribution is supported with no restriction on versions
+``` yaml
+  supportedClusterTypes:
+    connectedClusters:
+      - distribution: ["AKS"]
+        distributionSupported: true
+        unsupportedVersions: null
+```
+
+Only the "AKS" distribution is supported with restrictions on some versions
+``` yaml
+  supportedClusterTypes:
+    connectedClusters:
+      - distribution: ["AKS"]
+        distributionSupported: true
+        unsupportedVersions: ["1.10.0...1.20.0", ">1.22.1"]
+```
+
+Only the "AKS" and "GKE" distributions are supported with restriction on some versions
+``` yaml
+  supportedClusterTypes:
+    connectedClusters:
+      - distribution: ["AKS"]
+        distributionSupported: true
+        unsupportedVersions: ["=1.2.0"]
+      - distribution: ["GKE"]
+        distributionSupported: true
+        unsupportedVersions: ["1.10.0...1.20.0", ">1.22.1"]
+```
 ### CreateUIDefinition
 
 Following are the important changes to be made in the CreateUIDefinition file. For a complete list of all changes and UI elements, please refer the CreateUIDefinition.json in the sample folder.
