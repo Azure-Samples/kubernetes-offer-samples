@@ -75,7 +75,7 @@
 							"value": "managedCluster"
 						},
 						{
-							"label": "Azure Arc-enabled Kubenetes cluster",
+							"label": "Azure Arc-enabled Kubernetes cluster",
 							"value": "connectedCluster"
 						}
 					],
@@ -150,8 +150,8 @@
 							{
 								"name": "existingClusterResourceName",
 								"type": "Microsoft.Common.DropDown",
-								"label": "Azure Arc-enabled Kubenetes cluster",
-								"toolTip": "Azure Arc-enabled Kubenetes cluster resource name",
+								"label": "Azure Arc-enabled Kubernetes cluster",
+								"toolTip": "Azure Arc-enabled Kubernetes cluster resource name",
 								"constraints": {
 									"allowedValues": "[map(steps('clusterDetails').existingArcConnectedClusterSection.arcConnectedClusterLookupControl.value, (item) => parse(concat('{\"label\":\"', item.name, '\",\"value\":\"', item.name, '\"}')))]",
 									"required": true
