@@ -1,0 +1,20 @@
+applicationName: com.contoso.azurevote
+publisher: "Contoso"
+description: "A test package for the marketplace CNAB structure supported on connected clusters and managed clusters"
+version: 0.0.1 #Must be in the format of #.#.#
+helmChart: "../k8s-offer-azure-vote/azure-vote"
+clusterArmTemplate: "./mainTemplate.json"
+uiDefinition: "./createUIDefinition.json"
+registryServer: "youracr.azurecr.io"
+extensionRegistrationParameters:
+  defaultScope: "cluster" # cluster or namespace
+  namespace: "contoso" # Specify the namespace the extension will install into. This property is required when defaultScope field value is chosen as 'cluster'
+  supportedClusterTypes:
+    connectedClusters:
+      - distribution: ["All"]
+        distributionSupported: true
+        unsupportedVersions: null
+    managedClusters:
+      - distribution: ["All"]
+        distributionSupported: true
+        unsupportedVersions: null

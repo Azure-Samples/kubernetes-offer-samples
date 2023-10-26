@@ -1,0 +1,129 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/0.1.2-preview/CreateUIDefinition.MultiVm.json#",
+	"handler": "Microsoft.Azure.CreateUIDef",
+	"version": "0.1.2-preview",
+	"parameters": {
+		"config": {
+			"basics": {
+				"location": {
+					"visible": false
+				},
+				"resourceGroup": {
+					"allowExisting": true,
+					"allowedMode": "UseExisting"
+				}
+			}
+		},
+		"basics": [
+			{
+				"name": "clusterSection",
+				"type": "Microsoft.Common.Section",
+				"elements": [
+					{
+						"name": "clusterInfoBox",
+						"type": "Microsoft.Common.InfoBox",
+						"visible": true,
+						"options": {
+							"icon": "Info",
+							"text": "This application can be installed only on Azure Arc-enabled Kubernetes clusters. To learn more on how to create Azure Arc-enabled Kubernetes cluster resources, click here.",
+							"uri": "https://learn.microsoft.com/en-us/azure/azure-arc/kubernetes/quickstart-connect-cluster"
+						}
+					},
+					{
+						"name": "clusterLookupControl",
+						"type": "Microsoft.Solutions.ArmApiControl",
+						"request": {
+							"method": "GET",
+							"path": "[concat(subscription().id, '/resourcegroups/', resourceGroup().name,  '/providers/Microsoft.Kubernetes/connectedClusters?api-version=2022-10-01-preview')]"
+						}
+					},
+					{
+						"name": "clusterResourceName",
+						"type": "Microsoft.Common.DropDown",
+						"label": "Azure Arc-enabled Kubernetes Cluster Name",
+						"toolTip": "Select the Azure Arc-enabled Kubernetes cluster",
+						"constraints": {
+							"allowedValues": "[map(steps('basics').clusterSection.clusterLookupControl.value, (item) => parse(concat('{\"label\":\"', item.name, '\",\"value\":\"', item.name, '\"}')))]",
+							"required": true
+						}
+					}
+				],
+				"visible": true
+			}
+		],
+		"steps": [
+			{
+				"name": "applicationDetails",
+				"label": "Application Details",
+				"elements": [
+					{
+						"name": "appInfoBox",
+						"type": "Microsoft.Common.InfoBox",
+						"visible": true,
+						"options": {
+							"icon": "Info",
+							"text": "Kubernetes applications are deployed as cluster extensions. Click here to learn more.",
+							"uri": "https://learn.microsoft.com/en-us/azure/azure-arc/kubernetes/conceptual-extensions"
+						}
+					},
+					{
+						"name": "extensionResourceName",
+						"type": "Microsoft.Common.TextBox",
+						"label": "Cluster extension resource name",
+						"defaultValue": "",
+						"toolTip": "Only lowercase alphanumeric characters are allowed, and the value must be 6-30 characters long.",
+						"constraints": {
+							"required": true,
+							"regex": "^[a-z0-9]{6,30}$",
+							"validationMessage": "Only lowercase alphanumeric characters are allowed, and the value must be 6-30 characters long."
+						},
+						"visible": true
+					},
+					{
+						"name": "title",
+						"type": "Microsoft.Common.TextBox",
+						"label": "Azure Vote Extension Title",
+						"toolTip": "This will replace the title's value inside your values.yaml",
+						"defaultValue": "Azure Vote App",
+						"constraints": {
+							"required": true,
+							"regex": "^[a-z0-9A-Z ]{1,30}$",
+							"validationMessage": "Only alphanumeric characters are allowed, and the value must be 6-30 characters long."
+						}
+					},
+					{
+						"name": "value1",
+						"type": "Microsoft.Common.TextBox",
+						"label": "Azure Vote Extension Option 1",
+						"toolTip": "This will replace the value1's value inside your values.yaml",
+						"defaultValue": "Cats",
+						"constraints": {
+							"required": true,
+							"regex": "^[a-z0-9A-Z ]{1,30}$",
+							"validationMessage": "Only alphanumeric characters are allowed, and the value must be 6-30 characters long."
+						}
+					},
+					{
+						"name": "value2",
+						"type": "Microsoft.Common.TextBox",
+						"label": "Azure Vote Extension Option 2",
+						"toolTip": "This will replace the value2's value inside your values.yaml",
+						"defaultValue": "Dogs",
+						"constraints": {
+							"required": true,
+							"regex": "^[a-z0-9A-Z ]{1,30}$",
+							"validationMessage": "Only alphanumeric characters are allowed, and the value must be 6-30 characters long."
+						}
+					}
+				]
+			}
+		],
+		"outputs": {
+			"clusterResourceName": "[basics('clusterSection').clusterResourceName]",
+			"extensionResourceName": "[steps('applicationDetails').extensionResourceName]",
+			"app-title": "[steps('applicationDetails').title]",
+			"app-value1": "[steps('applicationDetails').value1]",
+			"app-value2": "[steps('applicationDetails').value2]"
+		}
+	}
+}
