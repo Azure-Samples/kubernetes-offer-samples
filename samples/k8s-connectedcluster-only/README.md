@@ -27,7 +27,7 @@ Sample below indicates all ditributions of connectedCluster type are supported w
 
 
 
-![Alt text](images/Manifest_changes.PNG)
+![Alt text](images/Manifest_changes.png)
 
 Following is the guidance on the supportedClusterTypes:
 
@@ -36,7 +36,7 @@ Following is the guidance on the supportedClusterTypes:
 | supportedClusterTypes       | Contains an object for each top-level cluster-type. Allowed types are – “managedClusters”, “connectedClusters”. "managedClusters" denotes Azure Kubernetes Service (AKS) clusters. "connectedClusters" denotes Azure Arc-enabled Kubernetes clusters. For each of these cluster types, specify distributions and unsupported Kubernetes versions for these distributions. If supportedClusterTypes is not provided, all distributions of ‘managedClusters’ will be supported by default. If supportedClusterTypes is provided, and a given top level cluster type is not provided, then all distributions and Kubernetes versions for that cluster type will be treated as unsupported. |
 | distribution   | An array of distributions  corresponding to the cluster type. Provide name(s) of specific distributions. Set the value to [“All”]  to indicate all distributions are supported. |
 | distributionSupported  | A boolean value representing whether the specified distribution(s) are supported. If false, providing a value for UnsupportedVersions will cause an error. |
-| unsupportedVersions  | A list of versions for the specified distribution(s) which are unsupported. Supported operators: |
+| unsupportedVersions  | A list of versions for the specified distribution(s) which are unsupported. Supported operators are decribed below:: |
 
                         •	"=" Given version is not supported. E.g.: “=1.2.12”
 
@@ -83,7 +83,7 @@ Following are the important changes to be made in the CreateUIDefinition file. F
 
 Add a cluster lookup ArmApiControl that fetches a list of the Azure Arc-enabled Kubernetes Clusters (connected clusters) from the selected subscription and resource group.
 
-![Alt text](images/UIDefinition_ClusterLookupControl.PNG)
+![Alt text](images/UIDefinition_ClusterLookupControl.png)
 
 
 ### ARM Template
@@ -94,7 +94,7 @@ The ARM template does not need to create a new cluster resource. The user can de
 
 Add the extension resource under 'resources' section of the template. Note the 'scope' of the extension resource refers to the connected cluster resource.
 
-![Alt text](images/ARMTemplate_ExtensionResource.PNG)
+![Alt text](images/ARMTemplate_ExtensionResource.png)
 
 ## End-user experience when creating the extension
 
@@ -102,11 +102,11 @@ The resulting UI Definition will shows up as follows when the end-user creates a
 
 ### Selecting an existing connected cluster:
 
-![Alt text](images/Create_Extension_Basics_ConnectedOnly.PNG)
+![Alt text](images/Create_Extension_Basics_ConnectedOnly.png)
 
 ### Configuring application:
 
-![Alt text](images/Create_Extension_ApplicationDetails_ConnectedOnly.PNG)
+![Alt text](images/Create_Extension_ApplicationDetails_ConnectedOnly.png)
 
 ## Note
 This sample includes only a small subset of the files. The files in this sample folder contains the additional changes required on top of the base sample application '[k8s-offer-azure-vote](../k8s-offer-azure-vote/)'.

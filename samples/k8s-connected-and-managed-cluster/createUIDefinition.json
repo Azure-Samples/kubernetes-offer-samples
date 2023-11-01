@@ -219,6 +219,7 @@
 								"type": "Microsoft.Common.DropDown",
 								"label": "OS SKU",
 								"toolTip": "The SKU of Linux OS for VM.",
+								"defaultValue": "AzureLinux",
 								"constraints": {
 									"allowedValues": [
 										{

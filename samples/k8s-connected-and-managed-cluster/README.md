@@ -27,7 +27,7 @@ Add 'supportedClusterTypes' under extensionRegistrationParameters.
 
 Sample below indicates all distributions of connectedClusters type and all ditributions of managedClusters type are supported.
 
-![Alt text](images/Manifest_changes.PNG)
+![Alt text](images/Manifest_changes.png)
 
 Following is the guidance on the supportedClusterTypes:
 
@@ -36,7 +36,7 @@ Following is the guidance on the supportedClusterTypes:
 | supportedClusterTypes       | Contains an object for each top-level cluster-type. Allowed types are – “managedClusters”, “connectedClusters”. "managedClusters" denotes Azure Kubernetes Service (AKS) clusters. "connectedClusters" denotes Azure Arc-enabled Kubernetes clusters. For each of these cluster types, specify distributions and unsupported Kubernetes versions for these distributions. If supportedClusterTypes is not provided, all distributions of ‘managedClusters’ will be supported by default. If supportedClusterTypes is provided, and a given top level cluster type is not provided, then all distributions and Kubernetes versions for that cluster type will be treated as unsupported. |
 | distribution   | An array of distributions  corresponding to the cluster type. Provide name(s) of specific distributions. Set the value to [“All”]  to indicate all distributions are supported. |
 | distributionSupported  | A boolean value representing whether the specified distribution(s) are supported. If false, providing a value for UnsupportedVersions will cause an error. |
-| unsupportedVersions  | A list of versions for the specified distribution(s) which are unsupported. Supported operators: |
+| unsupportedVersions  | A list of versions for the specified distribution(s) which are unsupported. Supported operators are decribed below: |
 
                         •	"=" Given version is not supported. E.g.: “=1.2.12”
 
@@ -81,19 +81,19 @@ Following are the important changes to be made in the CreateUIDefinition file. F
 
 Add a control to choose the cluster type
 
-![Alt text](images/UIDefinition_ClusterTypeControl.PNG)
+![Alt text](images/UIDefinition_ClusterTypeControl.png)
 
 Add a section for looking up Azure Kubernetes Service (AKS) cluster resources. Set the visibility of this section to 'true' only if the cluster type is 'managedClusters'.
 
-![Alt text](images/UIDefinition_AKSClusterLookup.PNG)
+![Alt text](images/UIDefinition_AKSClusterLookup.png)
 
 Add a section for looking up Azure Arc-enabled Kubernetes cluster resources. Set the visibility of this section to 'true' only if the cluster type is 'connectedClusters'.
 
-![Alt text](images/UIDefinition_ArcClusterLookup.PNG)
+![Alt text](images/UIDefinition_ArcClusterLookup.png)
 
 Add 'clusterType' propert to the outputs that will be passed as parameters to the ARM template
 
-![Alt text](images/UIDefinition_Outputs.PNG)
+![Alt text](images/UIDefinition_Outputs.png)
 
 ### ARM Template
 
@@ -103,15 +103,15 @@ The ARM template needs to deploy the resources based on the cluster type selecte
 
 Add a new parameter for 'clusterType':
 
-![Alt text](images/ARMTemplate_ClusterType_Parameter.PNG)
+![Alt text](images/ARMTemplate_ClusterType_Parameter.png)
 
 For creating the new AKS cluster resource, set the condition that clusterType should be 'managedCluster' and user chooses to create new dev cluster:
 
-![Alt text](images/ARMTemplate_ManagedCluster_Condition.PNG)
+![Alt text](images/ARMTemplate_ManagedCluster_Condition.png)
 
 For the extension resource, set the scope based on the cluster type selected:
 
-![Alt text](images/ARMTemplate_Extension_Scope.PNG)
+![Alt text](images/ARMTemplate_Extension_Scope.png)
 
 Note: The 'dependsOn' property on the extension resource is applicable only when a new managed cluster resource is being deployed.
 
@@ -123,33 +123,33 @@ The resulting UI Definition will shows up as follows when the end-user creates a
 
 Select Azure Kubernetes Service (AKS) cluster type and use an existing cluster:
 
-![Alt text](images/Create_Extension_Basics_ManagedClusterType_Existing.PNG)
+![Alt text](images/Create_Extension_Basics_ManagedClusterType_Existing.png)
 
 Select Azure Kubernetes Service (AKS) cluster type and create a new cluster:
 
-![Alt text](images/Create_Extension_Basics_ManagedClusterType_New.PNG)
+![Alt text](images/Create_Extension_Basics_ManagedClusterType_New.png)
 
 Select Azure Arc-enabled Kubernetes cluster type:
 
-![Alt text](images/Create_Extension_Basics_ConnectedClusterType.PNG)
+![Alt text](images/Create_Extension_Basics_ConnectedClusterType.png)
 
 ### Configuring cluster resource
 
 Select an existing Azure Kubernetes Service (AKS) cluster resource:
 
-![Alt text](images/Create_Extension_ClusterDetails_SelectExistingManagedCluster.PNG)
+![Alt text](images/Create_Extension_ClusterDetails_SelectExistingManagedCluster.png)
 
 Providing inputs for creating a new Azure Kubernetes Service (AKS) cluster resource:
 
- ![Alt text](images/Create_Extension_ClusterDetails_CreateNewManagedCluster.PNG)
+ ![Alt text](images/Create_Extension_ClusterDetails_CreateNewManagedCluster.png)
 
 Select an existing Azure Arc-enabled Kubernetes cluster resource:
 
-![Alt text](images/Create_Extension_ClusterDetails_SelectExistingConnectedCluster.PNG)
+![Alt text](images/Create_Extension_ClusterDetails_SelectExistingConnectedCluster.png)
 
 ### Configuring application/extension:
 
-![Alt text](images/Create_Extension_ApplicationDetails_ConnectedManaged.PNG)
+![Alt text](images/Create_Extension_ApplicationDetails_ConnectedManaged.png)
 
 ## Note
 This sample includes only a small subset of the files. The files in this sample folder contains the additional changes required on top of the base sample application '[k8s-offer-azure-vote](../k8s-offer-azure-vote/)'.
