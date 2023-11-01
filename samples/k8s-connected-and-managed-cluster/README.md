@@ -103,7 +103,7 @@ The ARM template needs to deploy the resources based on the cluster type selecte
 
 Add a new parameter for 'clusterType':
 
-![Alt text](images/ARMTemplate_ClusterType_Parameter.png)
+![Alt text](images/ARMTemplate_ClusterType_NewParameter.png)
 
 For creating the new AKS cluster resource, set the condition that clusterType should be 'managedCluster' and user chooses to create new dev cluster:
 
