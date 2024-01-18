@@ -29,4 +29,5 @@ This repository contains getting started guide and samples for creating Kubernet
 |[k8s-cluster-condition-sample](samples/k8s-cluster-condition-sample/) | This sample shows how ISV can create or select existing Kubernetes cluster with specific k8s version in Azure Marketplace. Same idea can be applied to filter other cluster properties like size, node count, etc. |
 |[managed-app-sample](samples/managed-app-sample/) | This sample shows how ISV can create a managed application that can be published to Azure Marketplace leveraging kubernetes extension type. |
 |[datatype-sample](samples/datatype-sample/) | This sample provides examples for the following scenarios: <br> -  Two different ways (editable grids, textboxes) to override array objects inside helm chart for Kubernetes Marketplace Offer. <br> -  How to override values for keys with special characters like '.' and inside deeper nested objects. |
-
+|[connectedcluster-only-sample](samples/k8s-connectedcluster-only/) | This sample shows how ISV can prepare a Kubernestes application that can be installed on Azure Arc-enabled Kubernetes clusters. |
+|[connected-and-managed-cluster-sample](samples/k8s-connected-and-managed-cluster/) | This sample shows how ISV can prepare a Kubernestes application that can be installed on Azure Kubernestes Service (AKS) clusters or Azure Arc-enabled Kubernetes clusters. |
