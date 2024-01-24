@@ -4,6 +4,7 @@ description: "A test package for the marketplace CNAB structure that ensure aks 
 version: 1.0.1 #Must be in the format of #.#.#
 helmChart: "../k8s-offer-azure-vote/azure-vote"
 clusterArmTemplate: "../k8s-offer-azure-vote/mainTemplate.json"
+testParameterFile: "../k8s-offer-azure-vote/parameterFile.json"
 uiDefinition: "./createUIDefinition.json"
 registryServer: "youracr.azurecr.io"
 extensionRegistrationParameters:
