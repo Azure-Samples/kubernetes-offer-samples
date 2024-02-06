@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: vote-back-{{.Release.Name}}
-        image: "{{ .Values.global.azure.images.backend.registry }}/{{ .Values.global.azure.images.backend.image }}@{{ .Values.global.azure.images.backend.digest }}"
+        image: "{{ .Values.global.azure.images.backend.registry }}/{{ .Values.global.azure.images.backend.image }}:{{ .Values.global.azure.images.backend.tag }}"
         ports:
         - containerPort: 6379
           name: vote-back
@@ -50,7 +50,7 @@ spec:
     spec:
       containers:
       - name: vote-front
-        image: "{{ .Values.global.azure.images.frontend.registry }}/{{ .Values.global.azure.images.frontend.image }}@{{ .Values.global.azure.images.frontend.digest }}" 
+        image: "{{ .Values.global.azure.images.frontend.registry }}/{{ .Values.global.azure.images.frontend.image }}:{{ .Values.global.azure.images.frontend.tag }}" 
         imagePullPolicy: Always
         ports:
         - containerPort: 80
