@@ -1,0 +1,36 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "extensionResourceName": {
+            "value": "azurevotetest" 
+        },
+        "clusterResourceName": {
+            "value": "azurevotetestclust" 
+        },
+        "location": {
+            "value": "eastus" 
+        },
+        "app-title": {
+            "value": "azurevotetestext" 
+        },
+        "app-value1": {
+            "value": "Cats" 
+        },
+        "app-value2": {
+            "value": "Dogs" 
+        },
+        "app-cpuLimit": {
+            "value": [
+                {"cpuValue": "0.25"},
+                {"cpuValue": "0.5"}
+            ]
+        },
+        "app-memoryLimit0": {
+            "value": "0.25Gi" 
+        },
+        "app-memoryLimit1": {
+            "value": "0.5Gi" 
+        }
+    }
+}
