@@ -1,0 +1,12 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "clusterResourceId": {
+            "value": "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/sampleresourcegroup/providers/Microsoft.ContainerService/managedClusters/sampleclustername"
+        }, //TODO: Replace cluster resource Id with a real value, value above is a sample showing format
+        "extensionResourceName": {
+            "value": "azurevotetest"
+        }
+    }
+}
