@@ -17,13 +17,13 @@ global:
       resourceId: "DONOTMODIFY" # application's Azure Resource ID, Azure populates this value at deployment time
     images:
       frontend:
-        tag: "1.0.22"
-        image: azure-vote-custom-front
+        tag: latest
+        image: azure-vote-front
         registry: azurek8ssamples.azurecr.io/marketplaceimages
       backend:
-        tag: "latest"
-        image: azure-vote-back
-        registry: azurek8ssamples.azurecr.io/marketplaceimages
+        tag: alpine
+        image: redis
+        registry: docker.io/library
 # how many frontends do we want?
 replicaCount: 1
 
