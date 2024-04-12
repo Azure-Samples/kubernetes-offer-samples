@@ -14,6 +14,13 @@ This folder contains samples that shows how ISV can provide the ability to overr
 
 ## ARM Template change
 First you will need to add the parameter 'namespace' in the parameters section of the ARM template. This parameter will be used to override the namespace settings in kubneretes extension type, and value can be passed in from UIDefinition.
+```json
+"namespace": {
+    "type": "string",
+    "defaultValue": "azure-vote"
+}
+```
+Set the default value to be the same as default in manifest file (if any) and the default value in UIDefinition to ensure consist experience for both ARM template, Portal and CLI installation.
 
 In cluster scope setting, the additional properties you will need to add in ARM template are:
 ```json
