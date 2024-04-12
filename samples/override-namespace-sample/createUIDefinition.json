@@ -216,9 +216,21 @@
 						"constraints": {
 							"required": true,
 							"regex": "^[a-z0-9]{6,30}$",
-							"validationMessage": "Only lowercase alphanumeric characters are allowed, and the value must be 6-30 characters long."
+							"validationMessage": "Namespace names must contain only lowercase alphanumeric characters or hyphens, start and end with an alphanumeric character, and contain at most 63 characters."
 						},
 						"visible": true
+					},
+					{
+						"name": "namespace",
+						"type": "Microsoft.Common.TextBox",
+						"label": "Namespace",
+						"defaultValue": "azure-vote",
+						"toolTip": "namespace for the application",
+						"constraints": {
+							"required": true,
+							"regex": "^[a-z0-9][-a-z0-9]{0,61}[a-z0-9]$",
+							"validationMessage": "Only lowercase alphanumeric characters are allowed, and the value must be 6-30 characters long."
+						}
 					},
 					{
 						"name": "title",
@@ -246,74 +258,14 @@
 					},
 					{
 						"name": "value2",
-						"type": "Microsoft.Common.FileUpload",
+						"type": "Microsoft.Common.TextBox",
 						"label": "Azure Vote Extension Option 2",
-						"toolTip": "This will replace the value2's value inside your values.yaml with the content of the uploaded file. See https://learn.microsoft.com/en-us/azure/azure-resource-manager/managed-applications/microsoft-common-fileupload",
+						"toolTip": "This will replace the value2's value inside your values.yaml",
+						"defaultValue": "Dogs",
 						"constraints": {
 							"required": true,
-							"accept": ".txt"
-						},
-						"options": {
-							"multiple": false,
-							"uploadMode": "file",
-							"openMode": "read",
-							"encoding": "utf-8"
-						}
-					},
-					{
-						"name": "cpuLimit",
-						"type": "Microsoft.Common.EditableGrid",
-						"label": "CPU Limit",
-						"ariaLabel": "Enter CPU Request and Limits in editable grid format",
-						"constraints": {
-							"width": "Full",
-							"rows": {
-								"count": {
-									"min": 2,
-									"max": 2
-								}
-							},
-							"columns": [
-								{
-									"id": "cpuValue",
-									"header": "CPU Value, first row is request, second row is limit",
-									"width": "500px",
-									"element": {
-										"type": "Microsoft.Common.TextBox",
-										"defaultValue": "0.25",
-										"toolTip": "This will replace the cpuLimit's array index values inside your values.yaml",
-										"constraints": {
-											"required": true,
-											"regex": "^[0-9]+.[0-9]+$",
-											"validationMessage": "Must be in the format for #.#"
-										}
-									}
-								}
-							]
-						}
-					},
-					{
-						"name": "memoryLimit0",
-						"type": "Microsoft.Common.TextBox",
-						"label": "Memory Request",
-						"toolTip": "This will replace the memoryLimit's array index 0 value inside your values.yaml",
-						"defaultValue": "0.25Gi",
-						"constraints": {
-							"required": true,
-							"regex": "^[0-9.]+[EPTGMK]i$",
-							"validationMessage": "Must be in the format for #.#[EPTGMK]i"
-						}
-					},
-					{
-						"name": "memoryLimit1",
-						"type": "Microsoft.Common.TextBox",
-						"label": "Memory Limit",
-						"toolTip": "This will replace the memoryLimit's array index 1 value inside your values.yaml",
-						"defaultValue": "0.5Gi",
-						"constraints": {
-							"required": true,
-							"regex": "^[0-9.]+[EPTGMK]i$",
-							"validationMessage": "Must be in the format for #.#[EPTGMK]i"
+							"regex": "^[a-z0-9A-Z ]{1,30}$",
+							"validationMessage": "Only alphanumeric characters are allowed, and the value must be 6-30 characters long."
 						}
 					}
 				]
@@ -332,9 +284,7 @@
 			"app-title": "[steps('applicationDetails').title]",
 			"app-value1": "[steps('applicationDetails').value1]",
 			"app-value2": "[steps('applicationDetails').value2]",
-			"app-cpuLimit": "[steps('applicationDetails').cpuLimit]",
-			"app-memoryLimit0": "[steps('applicationDetails').memoryLimit0]",
-			"app-memoryLimit1": "[steps('applicationDetails').memoryLimit1]"
+			"namespace": "[steps('applicationDetails').namespace]"
 		}
 	}
 }
