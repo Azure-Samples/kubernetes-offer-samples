@@ -13,6 +13,7 @@ products:
 This sample demonstrates 
 - how to override array objects inside helm chart for Kubernetes Marketplace Offer
 - how to override values on keys with special characters like '.' and inside deeper nested objects.
+- how to use file upload to pass in text from file.
 
 ## Helm chart
 
