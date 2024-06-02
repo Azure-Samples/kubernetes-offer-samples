@@ -1,0 +1,24 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "extensionResourceName": {
+            "value": "azurevotetest"
+        },
+        "clusterResourceName": {
+            "value": "sampletestclust"
+        },
+        "location": {
+            "value": "eastus"
+        },
+        "app-title": {
+            "value": "Azure Vote"
+        },
+        "app-value1": {
+            "value": "Cats"
+        },
+        "app-value2": {
+            "value": "Dogs"
+        }
+    }
+}
