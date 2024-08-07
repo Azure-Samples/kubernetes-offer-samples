@@ -1,13 +1,13 @@
-FROM alpine:latest
+FROM mcr.microsoft.com/cbl-mariner/base/core:2.0
 
-RUN apk add --no-cache py-pip
+RUN tdnf install -y python3-pip
 
 # We copy just the requirements.txt first to leverage Docker cache
 COPY ./requirements.txt /app/requirements.txt
 
 WORKDIR /app
 
-RUN pip install -r requirements.txt
+RUN pip install -r requirements.txt 
 
 COPY . /app
 

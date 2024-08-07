@@ -136,6 +136,13 @@
             "metadata": {
                 "description": "The Linux SKU to use."
             }
+        },
+        "enableFIPS": {
+            "type": "Bool",
+            "defaultValue": true,
+            "metadata": {
+                "description": "Enable FIPS. https://learn.microsoft.com/en-us/azure/aks/create-node-pools#fips-enabled-node-pools"
+            }
         }
     },
     "variables": {
@@ -171,8 +178,9 @@
                         "osDiskSizeGB": "[parameters('osDiskSizeGB')]",
                         "count": "[parameters('vmCount')]",
                         "enableAutoScaling": "[parameters('vmEnableAutoScale')]",
-                        "minCount": 1,
-                        "maxCount": 10,
+                        "enableFIPS": "[parameters('enableFIPS')]",
+                        "minCount": "[if(parameters('vmEnableAutoScale'), 1, json('null'))]",
+                        "maxCount": "[if(parameters('vmEnableAutoScale'), 10, json('null'))]",
                         "vmSize": "[parameters('vmSize')]",
                         "osType": "Linux",
                         "osSKU": "[parameters('osSKU')]",
