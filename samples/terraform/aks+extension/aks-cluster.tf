@@ -15,7 +15,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
   location            = var.resource_group_location
   resource_group_name = azurerm_resource_group.aks_rg.name
   dns_prefix          = "aks"
-
+  image_cleaner_enabled = true
   default_node_pool {
     name       = "default"
     node_count = 1
@@ -61,5 +61,17 @@ resource "azurerm_kubernetes_cluster_extension" "extension" {
     name      = "pereverynodeincluster"
     product   = "prasannatestcontaineroffer1"
     publisher = "test_test_mix3pptest0011614206850774"
+  }
+}
+
+resource "azurerm_kubernetes_cluster_extension" "extension2" {
+  name                  = "bitnami"
+  cluster_id = azurerm_kubernetes_cluster.aks.id
+  extension_type        = "Bitnami.NginxMain"
+  
+  plan {
+    name      = "main"
+    product   = "nginx-cnab"
+    publisher = "bitnami"
   }
 }

@@ -1,16 +1,13 @@
-resource "azurerm_kubernetes_cluster_extension" "extension" {
-  name                  = "example-extension"
+resource "azurerm_kubernetes_cluster_extension" "clickhouse" {
+  name                  = "clickhouse"
   cluster_id = var.cluster_id
-  extension_type        = "ContosoJ.PrivateAzureVotePerEveryNode"
-  release_train         = "preview"
+  extension_type        = var.extension_type
   configuration_settings = {
-    title = "Azure Vote App 2"
-    value1 = "BMW"
-    value2 = "Mercedes"
+    resourcesPreset = "large"
   }
   plan {
-    name      = "pereverynodeincluster"
-    product   = "prasannatestcontaineroffer1"
-    publisher = "test_test_mix3pptest0011614206850774"
+    name      = var.plan-name
+    product   = var.product-id
+    publisher = var.publisher
   }
 }
