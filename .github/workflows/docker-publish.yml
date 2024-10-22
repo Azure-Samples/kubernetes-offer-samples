@@ -28,5 +28,6 @@ jobs:
             - name: Build and push
               uses: docker/build-push-action@v6
               with:
+                context: ./samples/k8s-offer-azure-vote/azure-vote/src
                 push: true
-                tags: user/app:latest
+                tags: ${{ secrets.DOCKER_USERNAME }}/azure-vote-auto:latest
