@@ -17,9 +17,6 @@ jobs:
               run: |
                 curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 
-            - name: Managed Identity Login
-              run: az login --identity
-
             - name: Get Docker Credentials
               run: |
                 DOCKER_USERNAME=$(az keyvault secret show --name DOCKER-USERNAME --vault-name ashleenanzekeyvault --query value -o tsv | tr -d '\r')
