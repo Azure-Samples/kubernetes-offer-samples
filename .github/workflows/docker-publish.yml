@@ -1,0 +1,36 @@
+name: Build and Push Docker Image
+
+on:
+    push:
+        branches:
+            - main
+
+jobs:
+    build-and-publish:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v3
+
+            - name: Install Azure CLI
+              run: |
+                curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+
+            - name: Managed Identity Login
+              run: az login --identity
+
+            - name: Get Docker Credentials
+              run: |
+                DOCKER_USERNAME=$(az keyvault secret show --name DOCKER-USERNAME --vault-name ashleenanzekeyvault --query value -o tsv | tr -d '\r')
+                DOCKER_PASSWORD=$(az keyvault secret show --name DOCKER-PASSWORD --vault-name ashleenanzekeyvault --query value -o tsv | tr -d '\r')
+                echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+
+            - name: Set up Buildx
+              run: docker/setup-buildx-action@v2
+            
+            - name: Build and Push Docker image
+              run: |
+                IMAGE="$DOCKER_USERNAME/azure-vote-auto:latest"
+                echo "Building image $IMAGE"
+                docker buildx build -t $IMAGE --platform linux/amd64 --push .
