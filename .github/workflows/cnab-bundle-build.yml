@@ -39,7 +39,11 @@ jobs:
             - name: Build CNAB Bundle
               uses: addnab/docker-run-action@v3
               with:
+                image: cdpx2bbbdcccfa4c4f81b9fd12cd0234701c00.azurecr.io/2bbbdccc-fa4c-4f81-b9fd-12cd0234701c/official/container-package-app-external:1.0.01868.5
+                options: -v /var/run/docker.sock:/var/run/docker.sock -v `pwd`:/data 
                 azcliversion: latest
-                inlineScript: |
-                    docker run -t -v /var/run/docker.sock:/var/run/docker.sock -v `pwd`:/data cdpx2bbbdcccfa4c4f81b9fd12cd0234701c00.azurecr.io/2bbbdccc-fa4c-4f81-b9fd-12cd0234701c/official/container-package-app-external:1.0.01868.5 /bin/bash -c "cd /data && cpa buildbundle"
+                run: |
+                    cpa /data
+                    cpa verufy
+                    cpa buildbundle
 
