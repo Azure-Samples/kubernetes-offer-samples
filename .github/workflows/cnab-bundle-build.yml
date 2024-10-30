@@ -5,7 +5,10 @@ on:
         branches:
             - main
             - docker-publish
-
+permissions:
+  id-token: write
+  contents: read
+  
 jobs:
     build-and-publish:
         runs-on: ubuntu-latest
