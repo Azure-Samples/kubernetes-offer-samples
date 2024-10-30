@@ -35,5 +35,4 @@ jobs:
                     testToken=`cat testToken.json | jq ".accessToken"`
                     testLogin=`cat testToken.json | jq ".loginServer"`
                     rm -rf testToken.json
-                    cd src/helmchart
                     cpa buildbundle --force
