@@ -41,4 +41,4 @@ jobs:
                   testToken=`cat testToken.json | jq ".accessToken"`
                   testLogin=`cat testToken.json | jq ".loginServer"`
                   rm -rf testToken.json
-                  az acr build --registry cnabint --image cnabint.azurecr.io/azure-vote:latest --image cnabint.azurecr.io/azure-vote:latest
+                  az acr build --registry cnabint --image cnabint.azurecr.io/azure-vote:latest --image cnabint.azurecr.io/azure-vote:${{ github.sha }}
