@@ -4,6 +4,7 @@ on:
     push:
         branches:
             - main
+            - docker-publish
 
 jobs:
     build-and-publish:
@@ -31,7 +32,7 @@ jobs:
                 az acr login --name cnabint
       
             - name: Build and push
-              uses: docker/build-push-action@v6
+              uses: docker/build-push-action@v6 
               with:
                 context: ./samples/k8s-offer-azure-vote/azure-vote/src
                 push: true
