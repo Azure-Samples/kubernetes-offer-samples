@@ -29,7 +29,7 @@ jobs:
             - name: Retrieve Access Token for ACR
               id: acr_token
               run: | 
-                ACCESS_TOKEN=$(az account get-access-token --resource https://${{ secrets.AZURE_CLIENT_ID }}.azurecr.io --query accessToken -o tsv)
+                ACCESS_TOKEN=$(az account get-access-token --resource https://cnabint.azurecr.io --query accessToken -o tsv)
                 echo "ACCESS_TOKEN=$ACCESS_TOKEN" >> $GITHUB_ENV
             
             - name: Log in to ACR
