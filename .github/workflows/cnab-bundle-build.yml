@@ -43,7 +43,7 @@ jobs:
                 options: -v /var/run/docker.sock:/var/run/docker.sock -v ${{ github.workspace }}:/data 
                 azcliversion: latest
                 run: |
-                    cpa /data
+                    cd /data
                     cpa verify
                     cpa buildbundle
 
