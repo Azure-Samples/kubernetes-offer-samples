@@ -28,7 +28,7 @@ jobs:
               with:
                 azcliversion: latest
                 inlineScript: |
-                    az account show
+                    az login
                     az acr login -n cnabint
                     cd src/helmchart
                     cpa buildbundle

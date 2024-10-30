@@ -35,6 +35,7 @@ jobs:
                 azcliversion: latest
                 inlineScript: |
                   az account show
+                  az login
                   az acr login --name cnabint
       
             - name: Build and push
