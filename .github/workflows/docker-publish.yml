@@ -36,7 +36,10 @@ jobs:
                 inlineScript: |
                   az account show
                   az login
-                  az acr login --name cnabint
+                  az acr login --name cnabint --expose-token > testToken.json
+                  testToken=`cat testToken.json | jq ".accessToken"`
+                  testLogin=`cat testToken.json | jq ".loginServer"`
+                  rm -rf testToken.json
       
             - name: Build and push
               uses: docker/build-push-action@v6 
