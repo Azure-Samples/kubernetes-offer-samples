@@ -44,6 +44,7 @@ jobs:
                 azcliversion: latest
                 run: |
                     cd /data/samples/k8s-offer-azure-vote
+                    az account show
                     az acr login -n ${{ secrets.AZURE_ACR }}
                     cpa verify
                     cpa buildbundle --force
