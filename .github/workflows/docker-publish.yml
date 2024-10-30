@@ -47,4 +47,4 @@ jobs:
               with:
                 context: ./samples/k8s-offer-azure-vote/azure-vote/src
                 push: true
-                tags: ashleenanzeacr.azurecr.io/container-package-app:latest
+                tags: ashleenanzeacr.azurecr.io/azure-vote:latest
