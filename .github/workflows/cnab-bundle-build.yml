@@ -42,12 +42,11 @@ jobs:
               with:
                 image: mcr.microsoft.com/container-package-app:latest
                 options: -v /var/run/docker.sock:/var/run/docker.sock -v ${{ github.workspace }}:/data --entrypoint "/bin/bash"
-              env:
                 run: |
                     cd /data/samples/k8s-offer-azure-vote
                     az login
                     az acr login -n ${{ secrets.AZURE_ACR }}
                     cpa verify
-                    cpa buildbundle
+                    cpa buildbundle --force
 
 
