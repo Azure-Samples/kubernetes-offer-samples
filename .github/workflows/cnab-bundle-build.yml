@@ -45,6 +45,6 @@ jobs:
                 run: |
                     cd /data/samples/k8s-offer-azure-vote
                     cpa verify
-                    cpa buildbundle
+                    cpa buildbundle --force
 
 
