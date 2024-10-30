@@ -41,4 +41,12 @@ jobs:
                   testToken=`cat testToken.json | jq ".accessToken"`
                   testLogin=`cat testToken.json | jq ".loginServer"`
                   rm -rf testToken.json
-                  az acr build --registry cnabint --image cnabint.azurecr.io/azure-vote:latest --image cnabint.azurecr.io/azure-vote:${{ github.sha }}
+      
+            - name: Build and push
+              uses: docker/build-push-action@v6 
+              with:
+                context: ./samples/k8s-offer-azure-vote/azure-vote/src
+                push: true
+                tags: cnabint.azurecr.io/azure-vote:latest
+                secrets: |
+                  GIT_AUTH_TOKEN=testToken
