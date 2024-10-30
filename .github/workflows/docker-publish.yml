@@ -3,7 +3,9 @@ name: Build and Push Docker Image
 on:
     push:
         branches:
+            - main
             - docker-publish
+
 permissions:
   id-token: write
   contents: read
@@ -35,8 +37,7 @@ jobs:
                 azcliversion: latest
                 inlineScript: |
                   az account show
-                  az login
-                  az acr login --name cnabint --expose-token > testToken.json
+                  az acr login --name ashleenanzeacr --expose-token > testToken.json
                   testToken=`cat testToken.json | jq ".accessToken"`
                   testLogin=`cat testToken.json | jq ".loginServer"`
                   rm -rf testToken.json
@@ -46,4 +47,4 @@ jobs:
               with:
                 context: ./samples/k8s-offer-azure-vote/azure-vote/src
                 push: true
-                tags: cnabint.azurecr.io/container-package-app:latest
+                tags: ashleenanzeacr.azurecr.io/container-package-app:latest
