@@ -43,6 +43,8 @@ jobs:
                 options: -v /var/run/docker.sock:/var/run/docker.sock -v ${{ github.workspace }}:/data --entrypoint "/bin/bash"
                 azcliversion: latest
                 run: |
-                    cd /data
-                    find . -name "manifest.yaml"
+                    cd /data/samples/k8s-offer-azure-vote
+                    cpa verify
+                    cpa buildbundle
+
 
