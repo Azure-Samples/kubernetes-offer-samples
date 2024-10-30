@@ -28,8 +28,12 @@ jobs:
                 subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
             
             - name: Log in to ACR
-              run: |
-                az acr login --name cnabint
+              uses: azure/cli@v2
+              with:
+                azcliversion: latest
+                inlineScript: |
+                  az account show
+                  az acr login --name cnabint
       
             - name: Build and push
               uses: docker/build-push-action@v6 

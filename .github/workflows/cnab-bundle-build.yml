@@ -22,7 +22,11 @@ jobs:
                 subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
             
             - name: Build CNAB Bundle
-              run: |
-                az acr login -n cnabint
-                cd src/helmchart
-                cpa buildbundle
+              uses: azure/cli@v2
+              with:
+                azcliversion: latest
+                inlineScript: |
+                    az account show
+                    az acr login -n cnabint
+                    cd src/helmchart
+                    cpa buildbundle
