@@ -44,7 +44,7 @@ jobs:
                 options: -v /var/run/docker.sock:/var/run/docker.sock -v ${{ github.workspace }}:/data --entrypoint "/bin/bash"
                 run: |
                     cd /data/samples/k8s-offer-azure-vote
-                    docker login $testLogin -u ${{ secrets.AZURE_ACR }} -p $testToken
+                    docker login $testLogin -p $testToken
                     cpa verify
                     cpa buildbundle
 
