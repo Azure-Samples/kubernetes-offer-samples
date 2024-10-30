@@ -25,12 +25,6 @@ jobs:
                 tenant-id: ${{ secrets.AZURE_TENANT_ID }}
                 subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
                 allow-no-subscriptions: true
-
-            - name: Retrieve Access Token for ACR
-              id: acr_token
-              run: | 
-                ACCESS_TOKEN=$(az account get-access-token --resource https://cnabint.azurecr.io --query accessToken -o tsv)
-                echo "ACCESS_TOKEN=$ACCESS_TOKEN" >> $GITHUB_ENV
             
             - name: Log in to ACR
               uses: azure/cli@v2
@@ -50,7 +44,7 @@ jobs:
                 options: -v /var/run/docker.sock:/var/run/docker.sock -v ${{ github.workspace }}:/data --entrypoint "/bin/bash"
                 run: |
                     cd /data/samples/k8s-offer-azure-vote
-                    echo $ACCESS_TOKEN | az login --service-principal --username ${{ secrets.AZURE_CLIENT_ID }} --password-stdin --tenant ${{ secrets.AZURE_TENANT_ID }}
+                    az login --allow-no-subscriptions --output none < /dev/null
                     az acr login -n ${{ secrets.AZURE_ACR }}
                     cpa verify
                     cpa buildbundle
