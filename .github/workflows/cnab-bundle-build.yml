@@ -31,7 +31,7 @@ jobs:
                 azcliversion: latest
                 inlineScript: |
                     az account show
-                    az acr login -n cnabint --expose-token > testToken.json
+                    az acr login -n cdpx2bbbdcccfa4c4f81b9fd12cd0234701c00 --expose-token > testToken.json
                     testToken=`cat testToken.json | jq ".accessToken"`
                     testLogin=`cat testToken.json | jq ".loginServer"`
                     rm -rf testToken.json
