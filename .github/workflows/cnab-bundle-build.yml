@@ -31,7 +31,7 @@ jobs:
                 azcliversion: latest
                 inlineScript: |
                     az account show
-                    az acr login -n ashleenanzeacr --expose-token > testToken.json
+                    az acr login -n ${{ secrets.AZURE_ACR }} --expose-token > testToken.json
                     testToken=`cat testToken.json | jq ".accessToken"`
                     testLogin=`cat testToken.json | jq ".loginServer"`
                     rm -rf testToken.json

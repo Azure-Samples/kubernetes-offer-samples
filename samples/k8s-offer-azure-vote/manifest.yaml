@@ -5,7 +5,7 @@ version: 1.0.1 #Must be in the format of #.#.#
 helmChart: "./azure-vote"
 clusterArmTemplate: "./mainTemplate.json"
 uiDefinition: "./createUIDefinition.json"
-registryServer: "ashleenanzeacr.azurecr.io"
+registryServer: "${{ secrets.AZURE_ACR }}.azurecr.io"
 extensionRegistrationParameters:
   defaultScope: "cluster" # cluster or namespace 
   namespace: "contoso" # Specify the namespace the extension will install into. This property is required when defaultScope field value is chosen as 'cluster'
