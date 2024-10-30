@@ -39,7 +39,7 @@ jobs:
             - name: Build CNAB Bundle
               uses: addnab/docker-run-action@v3
               with:
-                image: cnabint.azurecr.io/2bbbdccc-fa4c-4f81-b9fd-12cd0234701c/official/container-package-app-external:1.0.01868.5
+                image: mcr.microsoft.com/container-package-app:latest
                 options: -v /var/run/docker.sock:/var/run/docker.sock -v `pwd`:/data 
                 azcliversion: latest
                 run: |
