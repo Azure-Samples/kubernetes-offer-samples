@@ -37,7 +37,7 @@ jobs:
                 azcliversion: latest
                 inlineScript: |
                   az account show
-                  az acr login -n ashleenanzeacr --expose-token > testToken.json
+                  az acr login -n cnabint --expose-token > testToken.json
                   testToken=`cat testToken.json | jq ".accessToken"`
                   testLogin=`cat testToken.json | jq ".loginServer"`
                   rm -rf testToken.json
@@ -47,6 +47,6 @@ jobs:
               with:
                 context: ./samples/k8s-offer-azure-vote/azure-vote/src
                 push: true
-                tags: ashleenanzeacr.azurecr.io/azure-vote:latest
+                tags: cnabint.azurecr.io/azure-vote:latest
                 secrets: |
                   GIT_AUTH_TOKEN=testToken
