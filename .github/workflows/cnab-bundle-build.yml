@@ -44,7 +44,7 @@ jobs:
                 options: -v /var/run/docker.sock:/var/run/docker.sock -v ${{ github.workspace }}:/data --entrypoint "/bin/bash"
                 run: |
                     cd /data/samples/k8s-offer-azure-vote
-                    docker login cnabint.azurecr.io -u cnabint -password-stdin ${{ secrets.DOCKER_PASSWORD }}
+                    docker login cnabint.azurecr.io -u cnabint -p ${{ secrets.DOCKER_PASSWORD }}
                     cpa buildbundle --force
 
 
