@@ -212,33 +212,6 @@
                     }
                 }
             }
-        },
-        {
-            "type": "Microsoft.KubernetesConfiguration/extensions",
-            "apiVersion": "2023-05-01",
-            "name": "[parameters('extensionResourceName')]",
-            "properties": {
-                "extensionType": "[variables('clusterExtensionTypeName')]",
-                "autoUpgradeMinorVersion": true,
-                "releaseTrain": "[variables('releaseTrain')]",
-                "configurationSettings": {
-                    "title": "[parameters('app-title')]",
-                    "value1": "[parameters('app-value1')]",
-                    "value2": "[parameters('app-value2')]"
-                },
-                "configurationProtectedSettings": {    
-                      "password": "[parameters('password-element')]"
-                }
-            },
-            "plan": {
-                "name": "[variables('plan-name')]",
-                "publisher": "[variables('plan-publisher')]",
-                "product": "[variables('plan-offerID')]"
-            },
-            "scope": "[concat('Microsoft.ContainerService/managedClusters/', parameters('clusterResourceName'))]",
-            "dependsOn": [
-                "[resourceId('Microsoft.ContainerService/managedClusters/', parameters('clusterResourceName'))]"
-            ]
         }
     ],
     "outputs": {
