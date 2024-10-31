@@ -4,7 +4,6 @@ on:
     push:
         branches:
             - main
-            - docker-publish
 
 jobs:
     build-and-publish:
