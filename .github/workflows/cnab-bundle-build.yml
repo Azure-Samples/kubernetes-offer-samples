@@ -45,6 +45,6 @@ jobs:
                 run: |
                     cd /data/samples/k8s-offer-azure-vote
                     docker login cnabint.azurecr.io -u cnabint -password-stdin ${{ secrets.DOCKER_PASSWORD }}
-                    cpa buildbundle
+                    cpa buildbundle --force
 
 
