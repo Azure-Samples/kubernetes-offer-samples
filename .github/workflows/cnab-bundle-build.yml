@@ -6,10 +6,6 @@ on:
             - main
             - docker-publish
 
-permissions:
-  id-token: write
-  contents: read
-
 jobs:
     build-and-publish:
         runs-on: ubuntu-latest
@@ -25,7 +21,7 @@ jobs:
                 options: -v /var/run/docker.sock:/var/run/docker.sock -v ${{ github.workspace }}:/data --entrypoint "/bin/bash"
                 run: |
                     cd /data/samples/k8s-offer-azure-vote
-                    echo ${{ secrets.DOCKER_PASSWORD }} | docker login cnabint.azurecr.io -u cnabint --password-stdin
+                    echo ${{ secrets.ACR_TOKEN}} | docker login ${{ secrets.ACR_USERNAME }} -u testToken --password-stdin
                     cpa buildbundle --force
 
 
