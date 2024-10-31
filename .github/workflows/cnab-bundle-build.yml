@@ -17,25 +17,6 @@ jobs:
         steps:
             - name: Checkout repository
               uses: actions/checkout@v3
-        
-            - name: Login to Azure
-              uses: azure/login@v2
-              with:
-                client-id: ${{ secrets.AZURE_CLIENT_ID }}
-                tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-                subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-                allow-no-subscriptions: true
-            
-            - name: Log in to ACR
-              uses: azure/cli@v2
-              with:
-                azcliversion: latest
-                inlineScript: |
-                    az account show
-                    az acr login -n ${{ secrets.AZURE_ACR }} --expose-token > testToken.json
-                    testToken=`cat testToken.json | jq ".accessToken"`
-                    testLogin=`cat testToken.json | jq ".loginServer"`
-                    rm -rf testToken.json
                 
             - name: Build CNAB Bundle
               uses: addnab/docker-run-action@v3
@@ -44,7 +25,7 @@ jobs:
                 options: -v /var/run/docker.sock:/var/run/docker.sock -v ${{ github.workspace }}:/data --entrypoint "/bin/bash"
                 run: |
                     cd /data/samples/k8s-offer-azure-vote
-                    docker login cnabint.azurecr.io -u cnabint -p ${{ secrets.DOCKER_PASSWORD }}
+                    echo ${{ secrets.DOCKER_PASSWORD }} | docker login cnabint.azurecr.io -u cnabint --password-stdin
                     cpa buildbundle --force
 
 
