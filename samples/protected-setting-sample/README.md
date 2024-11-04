@@ -25,6 +25,7 @@ The following section adjusts the UI Definition to include a PasswordBox UI elem
 ## ARM Template
 Configuration Protected Setting (PasswordBox in this example) should be passed to the template as follows
  ![Alt text](images/main_template.PNG)
+In the helm chart, ISVs need to have the corresponding key in values.yaml to take and consume in their application.
 
 ## Note
 This sample includes only a small subset of the files. The files in this sample folder contains the additional changes required on top of the base sample application '[k8s-offer-azure-vote](../k8s-offer-azure-vote/)'.

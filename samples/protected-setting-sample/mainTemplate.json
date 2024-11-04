@@ -36,6 +36,9 @@
         "app-value2": {
             "type": "String"
         },
+        "password-element": {
+            "type": "String"
+        },
         "vmSize": {
             "type": "String",
             "defaultValue": "Standard_DS2_v2",
