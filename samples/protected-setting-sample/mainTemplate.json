@@ -37,7 +37,7 @@
             "type": "String"
         },
         "password-element": {
-            "type": "String"
+            "type": "securestring"
         },
         "vmSize": {
             "type": "String",
