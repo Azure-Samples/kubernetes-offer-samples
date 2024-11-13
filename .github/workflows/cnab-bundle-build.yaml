@@ -13,7 +13,7 @@ jobs:
             - name: Checkout repository
               uses: actions/checkout@v3
                 
-            - name: Build CNAB Bundle
+            - name: Build CNAB Bundle and Publish to ACR
               uses: addnab/docker-run-action@v3
               with:
                 image: mcr.microsoft.com/container-package-app:latest
