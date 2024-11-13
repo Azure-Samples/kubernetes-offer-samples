@@ -10,7 +10,7 @@ products:
 
 # ConnectedCluster-only sample
 
-This folder contains samples that show how an ISV can prepare a Kubernetes application that can be installed only on Azure Arc-enabled Kubernetes Clusters.
+This folder contains samples that show how an ISV can prepare a Kubernetes application that can be installed only on [Azure Kubernetes Service (AKS) clusters](https://learn.microsoft.com/en-us/azure/aks/what-is-aks).
 
 Note:
   - Throughout this sample, the terms  "connectedClusters" and "connected clusters" denote Azure Arc-enabled Kubernetes clusters.
