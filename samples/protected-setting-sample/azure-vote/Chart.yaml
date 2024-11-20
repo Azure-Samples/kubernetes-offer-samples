@@ -1,0 +1,4 @@
+apiVersion: v2
+description: A Helm chart for Kubernetes
+name: azure-vote
+version: 1.0.1
