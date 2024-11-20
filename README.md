@@ -32,6 +32,10 @@ This repository contains getting started guide and samples for creating Kubernet
 |[connectedcluster-only-sample](samples/k8s-connectedcluster-only/) | This sample shows how ISV can prepare a Kubernestes application that can be installed on Azure Arc-enabled Kubernetes clusters. |
 |[override-namespace-sample](samples/override-namespace-sample/) | This sample shows how ISV can provide the ability to override namespace settings in UIDefinition and consume them in ARM Template so that they can be passed to Kubernetes Extension Type as Configuration Settings. |
 <<<<<<< HEAD
+<<<<<<< HEAD
 |[protected-setting-sample](samples/protected-setting-sample/) | This sample shows how ISV can create protected settings and input secret values in UIDefinition as well as consume them in ARM Template so that they can be passed to Kubernetes Extension Type as Configuration Protected Settings.
 =======
 >>>>>>> 65342f4 (connected cluster update)
+=======
+|[protected-setting-sample](samples/protected-setting-sample/) | This sample shows how ISV can create protected settings and input secret values in UIDefinition as well as consume them in ARM Template so that they can be passed to Kubernetes Extension Type as Configuration Protected Settings.
+>>>>>>> 832b198 (protected setting sample)
