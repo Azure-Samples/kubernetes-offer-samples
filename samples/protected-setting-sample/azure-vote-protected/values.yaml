@@ -2,7 +2,7 @@
 title: "Azure Vote App"
 value1: Cats
 value2: Dogs
-password: mysecret
+password: ""
 global:
   azure:
     images:
