@@ -26,11 +26,11 @@ The following tables lists the configurable parameters of the azure-vote chart a
 | title | Azure vote app title. | Azure Vote App |
 | value1 | Value for first vote control / value | Cats |
 | value2 | Value for second vote control / value | Dogs |
-| password | Password for azure vote app | mysecret | 
+| password | Value for Password for azure vote app | mysecret | 
 | serviceName | Name for Kubernetes service. | aks-helloworld |
 | serviceType | Type for Kubernetes service. | ClusterIP |
 
-Note: For more complex values for password, such as data structures (a.b[0].c), use a similar structure as below to install the helm chart, but replace "password" with the data structure, i.e. "--set a.b[0].c=passwordValue".
+Note: For more complex values for password, such as data structures (a.b[0].c), refer to the complex-values subchart (located in azure-vote-protected/charts) and use a similar structure as below to install the helm chart, but replace "--set password=mysecret" with the data structure, i.e. "--set a.b[0].c=passwordValue".
 
 
 ## Examples
