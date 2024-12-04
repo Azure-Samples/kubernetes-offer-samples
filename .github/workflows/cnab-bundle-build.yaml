@@ -1,0 +1,25 @@
+name: CNAB Bundle Build
+
+on:
+    push:
+        branches:
+            - main
+
+jobs:
+    build-and-publish:
+        runs-on: ubuntu-latest
+        environment: production
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v3
+                
+            - name: Build CNAB Bundle and Publish to ACR
+              uses: addnab/docker-run-action@v3
+              with:
+                image: mcr.microsoft.com/container-package-app:latest
+                options: -v /var/run/docker.sock:/var/run/docker.sock -v ${{ github.workspace }}:/data --entrypoint "/bin/bash"
+                run: |
+                    cd /data/samples/k8s-offer-azure-vote
+                    echo ${{ secrets.ACR_TOKEN}} | docker login ${{ secrets.ACR_USERNAME }} -u testToken --password-stdin
+                    cpa buildbundle
+
