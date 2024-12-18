@@ -1,0 +1,4 @@
+apiVersion: v2
+description: A Subchart for Azure Vote Protected Samples
+name: azure-vote-protected-complex-values
+version: 1.0.1
