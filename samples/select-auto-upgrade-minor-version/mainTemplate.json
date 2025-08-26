@@ -180,7 +180,6 @@
                         "vmSize": "[parameters('vmSize')]",
                         "osType": "Linux",
                         "osSKU": "[parameters('osSKU')]",
-                        "storageProfile": "ManagedDisks",
                         "type": "VirtualMachineScaleSets",
                         "mode": "System",
                         "maxPods": 110,
