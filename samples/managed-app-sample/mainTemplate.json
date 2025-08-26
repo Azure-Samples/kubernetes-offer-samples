@@ -69,7 +69,7 @@
         },
         "kubernetesVersion": {
             "type": "String",
-            "defaultValue": "1.26.3",
+            "defaultValue": "1.32.6",
             "metadata": {
                 "description": "The version of Kubernetes."
             }
@@ -97,13 +97,6 @@
             "type": "Bool",
             "metadata": {
                 "description": "Boolean flag to turn on and off private network access to the Kubernetes cluster."
-            }
-        },
-        "enableHttpApplicationRouting": {
-            "defaultValue": true,
-            "type": "Bool",
-            "metadata": {
-                "description": "Boolean flag to turn on and off http application routing."
             }
         },
         "enableAzurePolicy": {
@@ -156,7 +149,7 @@
             ],
             "tags": {},
             "sku": {
-                "name": "Basic",
+                "name": "Base",
                 "tier": "Free"
             },
             "identity": {
@@ -170,6 +163,10 @@
                 "kubernetesVersion": "[parameters('kubernetesVersion')]",
                 "enableRBAC": "[parameters('enableRBAC')]",
                 "dnsPrefix": "[parameters('dnsPrefix')]",
+                "autoUpgradeProfile": {
+                    "upgradeChannel": "patch",
+                    "nodeOSUpgradeChannel": "NodeImage"
+                },
                 "agentPoolProfiles": [
                     {
                         "name": "agentpool",
@@ -198,9 +195,6 @@
                     "enablePrivateCluster": "[parameters('enablePrivateCluster')]"
                 },
                 "addonProfiles": {
-                    "httpApplicationRouting": {
-                        "enabled": "[parameters('enableHttpApplicationRouting')]"
-                    },
                     "azurepolicy": {
                         "enabled": "[parameters('enableAzurePolicy')]"
                     },
