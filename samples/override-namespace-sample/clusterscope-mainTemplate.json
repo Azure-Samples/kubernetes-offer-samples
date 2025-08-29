@@ -105,20 +105,6 @@
                 "description": "Enable private network access to the Kubernetes cluster."
             }
         },
-        "enableAzurePolicy": {
-            "defaultValue": false,
-            "type": "Bool",
-            "metadata": {
-                "description": "Boolean flag to turn on and off Azure Policy addon."
-            }
-        },
-        "enableSecretStoreCSIDriver": {
-            "defaultValue": false,
-            "type": "Bool",
-            "metadata": {
-                "description": "Boolean flag to turn on and off secret store CSI driver."
-            }
-        },
         "osSKU": {
             "type": "string",
             "defaultValue": "AzureLinux",
@@ -191,20 +177,12 @@
                 },
                 "apiServerAccessProfile": {
                     "enablePrivateCluster": "[parameters('enablePrivateCluster')]"
-                },
-                "addonProfiles": {
-                    "azurepolicy": {
-                        "enabled": "[parameters('enableAzurePolicy')]"
-                    },
-                    "azureKeyvaultSecretsProvider": {
-                        "enabled": "[parameters('enableSecretStoreCSIDriver')]"
-                    }
                 }
             }
         },
         {
             "type": "Microsoft.KubernetesConfiguration/extensions",
-            "apiVersion": "2023-05-01",
+            "apiVersion": "2024-11-01",
             "name": "[parameters('extensionResourceName')]",
             "properties": {
                 "extensionType": "[variables('clusterExtensionTypeName')]",
