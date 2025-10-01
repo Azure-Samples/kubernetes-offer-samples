@@ -1,0 +1,37 @@
+# Azure Vote UI control
+title: "Azure Vote App"
+value1: Cats
+value2: Dogs
+secret:
+  password: ""
+global:
+  azure:
+    images:
+      frontend:
+        tag: latest
+        image: azure-vote-front
+        registry: azurek8ssamples.azurecr.io/marketplaceimages
+      backend:
+        tag: alpine
+        image: redis
+        registry: docker.io/library
+# how many frontends do we want?
+replicaCount: 1
+
+
+# Service controls
+serviceNameFront: azure-vote-front
+serviceType: LoadBalancer
+
+# additional labels
+labels: {}
+
+resourcesLimit:
+  # CPU request and limit array
+  cpuLimit:
+    - 0.25
+    - 0.5
+  # Memory request and limit array
+  memory.Limit:
+    - 128Mi
+    - 256Mi
