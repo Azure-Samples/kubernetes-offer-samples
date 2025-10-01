@@ -25,7 +25,7 @@
     "resources": [
         {
             "type": "Microsoft.KubernetesConfiguration/extensions",
-            "apiVersion": "2023-05-01",
+            "apiVersion": "2024-11-01",
             "name": "[parameters('extensionResourceName')]",
             "dependsOn": [
             ],

@@ -1,6 +1,4 @@
-FROM mcr.microsoft.com/cbl-mariner/base/core:2.0
-
-RUN tdnf install -y python3-pip
+FROM mcr.microsoft.com/azurelinux/base/python:3.12
 
 # We copy just the requirements.txt first to leverage Docker cache
 COPY ./requirements.txt /app/requirements.txt
@@ -11,4 +9,5 @@ RUN pip install -r requirements.txt
 
 COPY . /app
 
-ENTRYPOINT FLASK_APP=/app/main.py flask run --host=0.0.0.0 --port=80
+ENV FLASK_APP=/app/main.py
+ENTRYPOINT ["flask", "run", "--host=0.0.0.0", "--port=80"]
