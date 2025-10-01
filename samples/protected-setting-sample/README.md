@@ -18,25 +18,26 @@ Protected configuration settings help manage sensitive data securely. These sett
 
 For Documentation on Protected Settings and Cluster extensions, please refer to [Cluster Extensions](https://learn.microsoft.com/en-us/azure/azure-arc/kubernetes/conceptual-extensions) and [Deploy and manage cluster extensions by using Azure CLI](https://learn.microsoft.com/en-us/azure/aks/deploy-extensions-az-cli) documentation.
 
-For Documentation on Configurations Protected Settings parameter, please refer to the "--configuration-protected-settings" parameter, located under the "Optional Parameters" Section of [documentation](https://learn.microsoft.com/en-us/azure/aks/deploy-extensions-az-cli#optional-parameters), as well as.
-## The resulting UI Definition will shows up as follow:
+For Documentation on Configurations Protected Settings parameter, please refer to the "--configuration-protected-settings" parameter, located under the "Optional Parameters" Section of [documentation](https://learn.microsoft.com/en-us/azure/aks/deploy-extensions-az-cli#optional-parameters), as well as [API Documentation](https://learn.microsoft.com/en-us/rest/api/kubernetesconfiguration/extensions/extensions/create).
 
-![Alt text](images/UI_Sample.PNG)
+## The UI Definition with a sample 'password' element is as follows:
+
+![Alt text](images/UI_Sample.png)
 
 # Explanation
 
 ## UIDefinition
 The following section adjusts the UI Definition to include a PasswordBox UI element
-![Alt text](images/UIDefinition.PNG)
+![Alt text](images/UIDefinition.png)
 
 For more detail regarding the PasswordBox UI element, please refer to [documentation](https://learn.microsoft.com/en-us/azure/azure-resource-manager/managed-applications/microsoft-common-passwordbox)
 
 ## ARM Template
 Configuration Protected Setting (PasswordBox in this example) should be passed to the ARM template as follows:
-![Alt text](images/main_template.PNG)
+![Alt text](images/main_template.png)
 
 The PasswordBox element should also be passed in as a parameter in the ARM template as follows:
-![Alt text](images/define_parameters_main_template.PNG)
+![Alt text](images/define_parameters_main_template.png)
  The parameter type for the PasswordBox should be a "securestring" to ensure sensitive text data is protected and encrypted properly.
 
 In the helm chart, ISVs need to have the corresponding key (password) in values.yaml to take and consume in their application.
