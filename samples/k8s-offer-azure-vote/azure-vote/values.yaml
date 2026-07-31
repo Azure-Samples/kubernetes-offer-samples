@@ -6,7 +6,7 @@ global:
   azure:
     images:
       frontend:
-        tag: latest
+        tag: 2.0.0
         image: azure-vote-front
         registry: azurek8ssamples.azurecr.io/marketplaceimages
       backend:
